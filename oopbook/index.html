@@ -1,0 +1,2242 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from s.phpguide.co.il/oopbook/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 13 Jan 2016 17:37:18 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8"/>
+<title>תכנות מונחה עצמים מאפס ב-PHP</title>
+<link rel="stylesheet" type="text/css" href="../../maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+<meta name="viewport" content="width=960" id="testViewport"/>
+<link rel="shortcut icon" href="http://phpguide.co.il/static/images/favicon.ico" type="image/ico"/>
+<link rel="dns-prefetch" href="http://app.marketizator.com/">
+ 
+<meta name="description" content="הספר הפשוט על תכנות מונחה עצמים מ-PHP ילמד אותך לכתוב מערכות גדולות וייחודיות בצורה נכונה ויעילה"/>
+ 
+<link rel='stylesheet' id='easy-responsive-shortcodes-css' href='../wp-content/plugins/easy-responsive-shortcodes/css/A.easy-responsive-shortcodes.css%2cqver%3d1.0.pagespeed.cf.0yuM9PkL5T.css' type='text/css' media='all'/>
+<link rel='stylesheet' id='font-awesome-css' href='../wp-content/plugins/easy-responsive-shortcodes/css/A.font-awesome.css%2cqver%3d4.2.0.pagespeed.cf.rqZ4x09gbY.css' type='text/css' media='all'/>
+ 
+<script type="text/javascript">(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','../../www.google-analytics.com/analytics.js','__gaTracker');__gaTracker('create','UA-18788673-3','phpguide.co.il');__gaTracker('set','forceSSL',true);__gaTracker('require','displayfeatures');__gaTracker('require','linkid','linkid.html');__gaTracker('send','pageview');</script>
+ 
+<link rel='https://api.w.org/' href='../wp-json/index.html'/>
+<link rel="canonical" href="index.html"/>
+<link rel="alternate" type="application/json+oembed" href="../wp-json/oembed/1.0/embed0f7e.json?url=http%3A%2F%2Fs.phpguide.co.il%2Foopbook%2F"/>
+<link rel="alternate" type="text/xml+oembed" href="../wp-json/oembed/1.0/embedcf02?url=http%3A%2F%2Fs.phpguide.co.il%2Foopbook%2F&amp;format=xml"/>
+<style type="text/css">.recentcomments a{display:inline!important;padding:0!important;margin:0!important}</style>
+<style type="text/css">.wpcmsdev-toggle .fa{padding-left:6px;}
+}
+
+body
+{
+	border-top: 5px solid #77b3d8;
+}
+
+body, p
+{
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+    color: #5a6161;
+}
+
+.blockhome
+{
+    background: none;
+}
+
+
+
+p
+{
+    text-align: right;
+    margin-top:20px;
+}
+
+h1
+{
+    font-size:2.4em;
+    text-align: right;
+    direction:rtl;
+    color: #6bae57;
+    margin-top: 2em;
+}
+
+ul
+{
+    text-align: right;
+    color:black;
+    list-style: none;
+    margin-right: 30px;
+}
+
+ul li
+{
+    padding-right: 25px;
+    line-height: 1.5em;
+}
+
+ul.intro
+{
+   margin-right:0;
+   padding-right:0;
+}
+
+ul.intro > li
+{
+	background-image:none;
+	margin-bottom: 10px;
+}
+
+#mail
+{
+    background: rgba(37, 73, 241, 0.30);
+    font:14px Helvetica,Arial,sans-serif;
+    border-radius: 5px;
+    padding:10px 20px 10px 20px;
+    width:400px;
+    margin: 0 auto;
+}
+
+
+/************************************************* Proposition blocks *************************************/
+
+div.propositionBlock
+{
+    border: 3px solid #44806e;
+    border-radius: 6px;
+    padding: 15px;
+}
+
+.propositionBlock h3
+{
+    font-size: 2em;
+    color: #3D8625;
+    background: #ECEACA;
+    margin: 0 -15px;
+    padding: 5px 0;
+    text-align:center;
+}
+
+
+blockquote
+{
+	border-left:none;
+	border-right: 5px solid #eee;
+}
+
+p
+{
+	margin: 0 0 20px;
+	line-height:23px;
+}
+
+
+
+/* Marketizator */
+._mktz_input[name="_mktz_field|email"]
+{
+	direction:ltr;
+}
+
+#_mktz_survey
+{
+	text-align:right;
+}
+
+
+#_mktz_close
+{
+	margin: -12px 0 0px -12px !important;
+	float:left;
+}
+
+
+
+
+
+ul.blue li
+{
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABZ0RVh0Q3JlYXRpb24gVGltZQAwNC8xNC8wOFZL9aYAAAAcdEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzQGstOgAAABP0lEQVQ4je2UPU/CYBSFz0WNidAmCihIlAETEzFOJibq5NYf4Mfm6IiTP8IFHfsLVFyNbs5M4qANA8GEUCuhTaBfYkv7OjC/JiTd5K4358nJvedeYowhyopFSpsAI6lpXoOIIMnKsWpY5VbXygLAalrQcknh/Olso8JLBxcoycpRrdm9Od3P0+5aEd9+iIfXz+yz0rmVZAUAKmMBW7p9dbKzQnvrGdSNEEAMB1t59Nwhfeh2mQfkzrCtm9ntwiJqX0PobgDdDdDsBSjkUlANa5mn4zoEgP5PCNMj2N5oXjMxBsMJgT+ui+twQUxojzUVs1PAwAdcj6E3YHhpaJgXE9rYDufiiVK10bmz/ZCWUknYXoh6s42+47JMOlXi6Yi3fiJC8fLt0HKca9McxUYUBU2Ix0vvF5v3XN3k2/wD4C9JT4areOd8MwAAAABJRU5ErkJggg==') no-repeat 100% 3px;
+}
+
+ul.green li
+{
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsSAAALEgHS3X78AAABM0lEQVQ4y+2TwUoCYRSFvzFBSBswxZwQg2gTErWwjdCqVQjtLJfhC9ibWC/QumybtLJd0KYoJJSgIhkdkCz9HWcKdP6eYALNVXi2l/txOOdeRUrJJOVhwpoC/y7vb8NcNb1vmHpBF3UNIKbGDS0QOzxZLRXddhS3s8lV03uV97vTTPxASYZT2I5FuXnBdetKJsIbWTeoq8NG/+1oN5ZVNqMpXpwaeGBraZvuoKPo/dcCUBwpw6bQtfVIkurgns6wTWfYpj58Zjm8gtFrLI6VoekIeghsTABmpJdP5wPpjNFyMDBvlBslfIqPb76wZR9TdnkwbgnOBY2RHfr9/vxd6+bMckwlElrAckye9BrC7spoSMuP3DLAzuNaRljiWAihAaiqaqizav4yUTkfCzj95X8C/AGvZILDdTolYwAAAABJRU5ErkJggg==') no-repeat 100% 3px;
+}
+
+
+
+.body{
+    background: url('data:image/png;base64,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') repeat;
+
+
+
+
+/* End of styles by phpguide */
+
+
+
+
+
+
+
+
+
+
+/*
+    GREENED - A Responsive Bootstrap Under Construction Theme by Gioska :: style.css
+    Designed and Developed by Gioska
+--------------------------------------------------------------------------------------------------------*/
+
+/* Body */
+
+body{   
+    width: 100%; 
+}
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+/* Overlay for the fullscreen Slideshow Background (index3) */
+
+#overlay{
+	top: 0;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background-repeat: repeat;
+	background-image: url('../img/overlay.html');
+	z-index: -997;
+	opacity:0.5;
+}
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+
+/* Title Header About Section*/
+
+#workingtext {
+	font-family: 'Passion One', cursive;
+	color: #323232;
+	font-size: 4.50em;
+	font-weight:normal;
+	padding: 110px 30px 0px 30px ; 
+	height: 100%;
+	margin: 0 auto;
+	text-align: center;
+	list-style-type: none;
+	text-transform: uppercase;
+	
+
+}
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+
+/* Container logo */
+
+.container-logo {
+    position: relative;
+	width:114px;
+    margin:0 auto;
+    padding: 0px 0px 0px 0px ; 
+	opacity:1;
+}
+
+/* Logo */
+
+.logo { 
+	margin: 0 auto; 
+	opacity: 0; 
+	position: fixed; 
+	top: -600px; 
+	z-index:999; 
+	text-align:center;}
+
+.logo a { 
+	display:block; 
+}
+
+.logo span { 
+	position: absolute; 
+	top:-5000px; }
+
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+/* Container  Copyleft Text*/	
+  
+.container-copyleft {
+	margin:0 auto;
+       position: relative;
+        max-width: 400px;
+		height:10px;
+		padding: 10px 0px 0px 0px ; 
+		text-align: center;
+		font-family: 'Lato', cursive;
+	color: #7a7979;
+	font-size: 11px;
+	font-weight:normal;
+	z-index:2;
+	
+      }
+
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+	  
+/* Container services - Middle section - About Section*/
+
+.container-services {
+        margin: 0 auto;
+        max-width: 800px;
+		padding: 0px 20px 10px 20px ; 
+		text-align: center;
+       color: #323232;
+       font-weight:normal;
+       text-decoration:none;
+	   list-style-type: none;
+}	  
+
+	  
+.container-services h2 {
+       text-align: center;
+	   padding: 0px 0px 0px 0px ; 
+	  font-family: 'Passion One', cursive;
+	   font-size: 18px;
+      }	
+
+	  
+.container-services p {
+       text-align: center;
+	   padding: 0px 0px 0px 0px ; 
+	   font-family: 'Lato', cursive;
+	   color: #323232; 
+	   font-size: 1.12em; 
+	   line-height: 25px; 
+	   margin: 0 0 15px;
+	   
+      }	  
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+/* Container Text First Page */
+
+
+.container-first-text p{ 
+	font-family: 'Passion One', cursive;
+	color: #323232;
+	font-size:16px;
+
+	list-style-type: none;
+	text-transform: uppercase;
+	text-shadow: 2px 2px 2px 0;
+	}
+
+
+.container-second-text{ 
+		margin: 0 auto;   
+        max-width: 680px;
+		padding: 0px 0px 0px 0px ; 
+		text-align: center;
+      }
+
+.container-second-text p{
+	font-family: 'Lato', cursive;
+	color: #323232;
+	font-size: 1.12em;
+	font-weight:normal;
+	padding: 0px 7px 10px 7px ; 
+	text-align: center;
+	list-style-type: none;
+	font-weight:400;
+	line-height:25px;
+}
+
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+	  
+/* Countdown */
+
+.container-count {
+	margin: 0 auto;
+        max-width: 960px;
+		padding: 20px 0px 10px 0px ; 
+		text-align: center;
+      }
+
+	
+.countdown {
+	font-family: 'Lato', cursive;
+}
+	
+.countdown .count {
+		background: url('../img/baseCount.html') no-repeat; /* Delete or comment this line if you want only digit */
+		display:inline-block;
+		width:100px;
+		height:100px;
+		margin:0px 10px;
+		margin-top:0px;
+		margin-bottom:15px;
+		text-align:center;
+		
+	}
+	
+.countdown {
+		color:#999999;
+		font-size:1em;
+		display:inline-block;
+		line-height:0.95em;
+	}
+		
+.countdown .count .bigCount {
+			display:block;
+			font-size:2em;
+			line-height:0.5em;
+			margin-top:30px;
+			margin-bottom:10px;
+		}
+			
+.countdown .count .smallCount {
+			display:block;
+			font-family: 'Lato', cursive;
+			font-size:0.8em;
+		}
+			
+.countdown .sepCount span {
+			display:block;
+		}
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+/* Font Colors */
+
+.font-dark {
+	color:#525252;
+}
+
+.font-blue {
+	color:#35bae5;	
+}
+
+.font-green {
+	color:#b2ce56;	
+}
+
+.font-yellow {
+	color:#f2c133;
+}
+
+.font-pink {
+	color:#fb67d5;
+}
+
+.font-white {
+	color:#fff;
+}
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+/* Container Form */
+	  
+.container-form {
+        margin: 0 auto;
+        max-width: 312px;
+		padding: 12px 0px 0px 0px ; 
+		
+		
+      }
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+/* Twitter Feed */
+
+.section-tweet {
+	 padding: 40px 0px 0px 0px ; 
+	 z-index:2;
+	 position:relative;
+}
+
+.tweet-icon{
+text-align: center;
+margin:0 auto;
+width:65px;
+height:36px;
+background:url(../img/twitter_logo.html) no-repeat;
+padding: 0px 0px 10px 0px ; 
+}
+
+
+.tweets-list-container{
+	padding: 0px 0px 0px 0px ; 
+    overflow: hidden;
+}
+
+.tweet-list{
+    list-style-type: none;
+	padding: 0px 0px 0px 0px ; 
+	
+}
+
+.tweets-home .tweet-list li p{
+	text-align: center;
+    font: italic 1em 'Lato', cursive;
+    line-height: 20px;
+    color: #fff;
+	
+}
+
+.tweets-home .tweet-list li a{
+    font: italic 13px 'Lato', cursive;
+    line-height: 20px;
+    color: #fff;
+	
+}
+
+.tweet-list li a:hover{
+    color: #525252;
+}
+
+.tweets-home .tweet-list li small{
+     font: italic 13px 'Lato', cursive;
+    color: #aaa;
+}
+
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+
+/* Social Media Icons */
+
+.socmed {
+	text-align: center;
+	padding-bottom:40px;
+	margin: 0 auto;
+	width: 255px;
+	overflow: hidden;
+}
+
+
+.socmed-footer {
+	text-align: center;
+	padding-top:10px;
+	padding-right:10px;
+	margin: 0 auto;
+	width: 255px;
+	overflow: hidden;
+}
+
+
+.twitter a,.facebook a,.tumblr a,.dribbble a,.linkedin a,.rss a,.delicious a,.devianart a,.digg a,.digg2 a,.flickr a,.lastfm a,.myspace a,.picasa a,.sharethis a,.skype a,.twitter2 a,.vimeo a,.youtube a,.yahoo a,.yahoo2 a,.wikipedia a {
+	float:right;
+	background:url(../img/socmed.html) no-repeat right bottom;
+	text-indent:8000px;
+	width:32px;
+	height:32px;
+	margin-left:10px;
+	-o-transition:all .3s;
+	-moz-transition:all .3s;
+	-webkit-transition:all .3s;
+	-ms-transition:all .3s;
+}
+.twitter a:hover,.facebook a:hover,.tumblr a:hover,.dribbble a:hover,.linkedin a:hover,.rss a:hover,.delicious a:hover,.devianart a:hover,.digg a:hover,.digg2 a:hover,.flickr a:hover,.lastfm a:hover,.myspace a:hover,.picasa a:hover,.sharethis a:hover,.skype a:hover,.twitter2 a:hover,.vimeo a:hover,.youtube a:hover,.yahoo a:hover,.yahoo2 a:hover,.wikipedia a:hover {
+	background:url(../img/socmed.html) no-repeat right top;
+}
+.twitter,.twitter a{background-position:-0px bottom}
+.twitter a:hover{background-position:-0px top}
+.twitter2,.twitter2 a{background-position:-528px bottom}
+.twitter2 a:hover{background-position:-528px top}
+.facebook,.facebook a{background-position:-33px bottom}
+.facebook a:hover{background-position:-33px top}
+.tumblr,.tumblr a{background-position:-66px bottom}
+.tumblr a:hover{background-position:-66px top}
+.dribbble,.dribbble a{background-position:-99px bottom}
+.dribbble a:hover{background-position:-99px top}
+.linkedin,.linkedin a{background-position:-133px bottom}
+.linkedin a:hover{background-position:-133px top}
+.rss,.rss a{background-position:-166px bottom}
+.rss a:hover{background-position:-166px top}
+.delicious,.delicious a{background-position:-199px bottom}
+.delicious a:hover{background-position:-199px top}
+.devianart,.devianart a{background-position:-233px bottom}
+.devianart a:hover{background-position:-233px top}
+.digg,.digg a{background-position:-266px bottom}
+.digg a:hover{background-position:-266px top}
+.digg2,.digg2 a{background-position:-299px bottom}
+.digg2 a:hover{background-position:-299px top}
+.flickr,.flickr a{background-position:-331px bottom}
+.flickr a:hover{background-position:-331px top}
+.lastfm,.lastfm a{background-position:-364px bottom}
+.lastfm a:hover{background-position:-364px top}
+.myspace,.myspace a{background-position:-397px bottom}
+.myspace a:hover{background-position:-397px top}
+.picasa,.picasa a{background-position:-431px bottom}
+.picasa a:hover{background-position:-431px top}
+.sharethis,.sharethis a{background-position:-464px bottom}
+.sharethis a:hover{background-position:-464px top}
+.skype,.skype a{background-position:-497px bottom}
+.skype a:hover{background-position:-497px top}
+.vimeo,.vimeo a{background-position:-562px bottom}
+.vimeo a:hover{background-position:-562px top}
+.youtube,.youtube a{background-position:-594px bottom}
+.youtube a:hover{background-position:-594px top}
+.yahoo,.yahoo a{background-position:-628px bottom}
+.yahoo a:hover{background-position:-628px top}
+.yahoo2,.yahoo2 a{background-position:-662px bottom}
+.yahoo2 a:hover{background-position:-662px top}
+.wikipedia,.wikipedia a{background-position:-694px bottom}
+.wikipedia a:hover{background-position:-694px top}
+
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+/* Block Home slideshow page*/
+
+.blockhome-slideshow {
+	padding: 10px 0 50px 0 ; 
+	position: relative;	
+}
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+
+/* Block Home*/
+
+.blockhome {
+	padding: 10px 0 50px 0 ; 
+	position: relative;
+	background: url(../img/bg-light/shattered.html) repeat; 
+	background-position: center center;
+}
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+/* Block About Section*/
+
+.blockaboutus {
+	padding: 30px 0 50px 0 ; 
+	position: relative;
+	background: url(../img/bg-light/bedge_grunge.html) repeat; 
+	background-position: center center;
+}
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+/* Block LastPage*/
+
+.blocklastpage {
+	padding: 0px 0 0px 0 ; 
+	position: relative;
+	
+}
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+/* Span text color Used in contact page */
+
+.text {
+       font-family: 'Lato', cursive;
+       color:#fff;
+	   font-size: 16px;
+	   font-weight:400;
+      }	 
+
+.text2 {
+       font-family: 'Lato', cursive;
+       color:#000000;
+	   font-size:13px;
+	   font-weight:normal;
+      }		  
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+/* Map - */
+
+#map{
+	position: absolute;
+    top:0px;
+    right:0;
+    z-index:1;
+    width:100%;
+    height:100%;	
+}
+
+
+
+#contactMap {
+    position: absolute;
+    top:0px;
+    right:0;
+    z-index:1;
+    width:100%;
+    height:100%;
+} 
+
+.gmnoprint {
+    display:none;
+}
+
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+/* Contact Container */
+
+#opa {
+    position: relative;
+	text-align:center;
+	max-width: 550px;
+    margin:0 auto;
+    top:0px;
+    z-index:2;
+    padding: 150px 0px 30px 0px ; 
+			 
+ 
+}
+
+
+#opa2 {
+    position: relative;
+	max-width: 550px;
+    margin:0 auto;
+    top:10px;
+    z-index:2;
+    padding: 0 0px 5px 0px ; 
+	
+}
+
+
+#opa2:hover {
+	
+}
+
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+
+/* Contact Info */
+
+.contactInfo{
+	margin: 0px 0px 0px 0px ; 
+	max-width: 980px;
+
+	
+}
+
+
+.contactInfo h2{
+	text-align:center;
+    font-size: 4em;
+    font-family: 'Passion one', cursive;
+    color: #fff;
+    font-weight:200;
+    margin:0 auto;
+    padding-top:10px;
+	padding-bottom:10px;
+	text-transform:uppercase;
+}
+
+
+
+.contactInfo p{
+	text-align:center;
+    width: 300px;
+    font-family: 'Lato', cursive;
+	font-size: 16px;
+    color: #74b727;
+    clear:right;
+	 margin:0 auto;
+    line-height:24px;
+	
+}
+
+.contactInfo a{
+	text-decoration:none;
+	color: #74b727;	
+}
+
+.contactInfo a:hover{
+	text-decoration:none;
+	color: #7a7979;	
+}
+
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+/* Team Member About Page*/
+
+.section-content {
+    max-width: 780px;
+    margin:0 auto;
+	font-family: 'Lato', sans-serif;
+	 color: #949494;
+	 padding: 0px 15px 0px 0px ; 
+}
+
+
+
+.section-title,
+.section-subtitle {	
+    padding-bottom: 20px;
+    
+}
+
+
+.section-subtitle {
+    color: #949494;
+	padding-bottom: 20px;
+   
+}
+
+.team {
+    position: relative;
+    height: 100%;
+    margin: 20px 0px;
+    overflow: hidden;
+	
+}
+.team-member {
+    display: block;
+    float: right;
+    width: 118px;
+    margin: 0 5px;
+    font-size: 12px;
+    line-height: 15px;
+	text-align:center;
+}
+
+.team-member-portrait {
+    display: block;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 12px;
+    overflow: hidden;
+    border: 3px solid #74b727;
+    -webkit-border-radius: 43px;
+    -moz-border-radius: 43px;
+    border-radius: 43px;
+}
+
+.team-member-portrait>img { display: block }
+
+.team-member-name {
+    display: block;
+    margin-bottom: 2px;
+    font-weight: 700;
+	 color: #323232;
+	
+}
+
+.team-member-title { 
+display: block; 
+color: #323232;
+
+
+}
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+/* Scroll Button home*/
+
+.landing_enter {
+	width:52px; 
+	display:block;
+	position:relative;
+	right:50%;
+	top:50%;
+	margin:30px 0 0 -29px;
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    -webkit-transform: scale(1);
+    transform: scale(1);	
+	transition: all 800ms; 
+	-webkit-transition: all 800ms; 
+	-moz-transition:all 800ms; 
+	-o-transition: all 800ms;	
+	opacity: 0.7;
+}
+
+
+
+.landing_enter img { 
+	position:absolute;
+	right:0px;
+	top:0px;
+	width:52px;
+	height:28px;
+	opacity: 1; 
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+	transition: opacity 300ms; 
+	-webkit-transition: opacity 300ms; 
+	-moz-transition:opacity 300ms; 
+	-o-transition: opacity 300ms;	
+	opacity: 1;
+}
+
+
+.landing_enter:hover img { 
+	opacity: 1; 
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);	
+}
+
+
+.landing_enter:hover { 
+	opacity: 1; 
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);	
+}
+
+
+.landing_enter.hided {
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+
+/* Scroll Button About - Second Page*/
+
+.landing_about {
+	width:52px; 
+	height:28px;
+	display:block;
+	position:relative;
+	right:50%;
+	top:50%;
+	margin:8px 0 0px -24px;
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    -webkit-transform: scale(1);
+    transform: scale(1);	
+	transition: all 800ms; 
+	-webkit-transition: all 800ms; 
+	-moz-transition:all 800ms; 
+	-o-transition: all 800ms;
+	opacity: 0.5; 	
+}
+
+
+
+.landing_about img { 
+	position:absolute;
+	right:0px;
+	top:0px;
+	width:52px;
+	height:28px;
+	opacity: 1; 
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+	transition: opacity 300ms; 
+	-webkit-transition: opacity 300ms; 
+	-moz-transition:opacity 300ms; 
+	-o-transition: opacity 300ms;	
+}
+
+
+.landing_about:hover img { 
+	opacity: 1; 
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);	
+}
+
+
+.landing_about:hover { 
+	opacity: 1; 
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);	
+}
+
+.landing_about.hided {
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+
+
+
+/*-----------------------------------------------------------------------------------------------------------------------*/	
+
+/* Services - About Section */
+
+.section-content-special {
+    max-width: 680px;
+    margin:0 auto;
+	font-family: 'Lato', sans-serif;
+	 color: #949494;
+	 padding: 0px 0px 0px 0px ; 
+}
+
+#buckets img{
+    text-align:center;
+}
+
+#buckets {
+	
+	margin-top:10px;
+    margin-bottom:0px;
+    text-align:center;
+}
+
+#buckets p {
+	
+    font-size:13px;
+    color:#706f6f;
+    line-height:24px;
+    font-family: 'Lato', cursive;
+    text-align:center;
+}
+
+#buckets h2 {
+    font-family: 'Passion One', cursive;
+    font-size:16px;
+    color:#626364;
+    font-weight:400;
+    text-align:center;
+	text-transform:uppercase;
+}
+
+
+#buckets .span4 {
+    margin-bottom:10px 
+}
+	
+/* End Css - :) */
+
+
+
+
+
+
+</style><style type="text/css">.plans ol,.plans ul{list-style:none;padding:0;margin:15px 0 20px 0}.plans ol li,.plans ul li{list-style:none;padding:0;line-height:2}.plans{margin:40px auto;width:660px;zoom:1;font-family:'Lucida Grande',Verdana,sans-serif;font-size:14px}.plans:before,.plans:after{content:'';display:table}.plans:after{clear:both}.plans p{text-align:center}.plans>.plan{float:right;width:220px;margin:10px 0;padding:20px;text-align:center;background:#fafafa;background-clip:padding-box;border:solid #453b5d;border-width:2px 2px 2px 0;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;-webkit-box-shadow:0 1px 2px rgba(0,0,0,.1);box-shadow:0 1px 2px rgba(0,0,0,.1)}.plans>.plan:first-child{border-top-right-radius:7px;border-bottom-right-radius:7px}.plans>.plan:last-child{border-width:2px;border-top-left-radius:7px;border-bottom-left-radius:7px}.plans .plan-title{position:relative;margin:-20px -10px 20px;padding:20px;line-height:1;font-size:16px;font-weight:bold;color:#595f6b;border-bottom:1px dashed #d2d2d2}.plans .plan-title:before{content:'';position:absolute;bottom:-1px;left:0;right:0;height:1px;background-size:3px 1px;background-image:-webkit-linear-gradient(left,white,white 33%,#d2d2d2 34%,#d2d2d2);background-image:-moz-linear-gradient(left,white,white 33%,#d2d2d2 34%,#d2d2d2);background-image:-o-linear-gradient(left,white,white 33%,#d2d2d2 34%,#d2d2d2);background-image:linear-gradient(to right,white,white 33%,#d2d2d2 34%,#d2d2d2)}.plans .plan-price{margin:0 auto 20px;width:90px;height:90px;line-height:90px;font-size:19px;font-weight:bold;color:#fff;background:#595f6b;border-radius:45px}.plans .plan-price>span{font-size:12px;font-weight:normal;color:rgba(255,255,255,.9)}.plans .plan-features{margin-bottom:20px;line-height:2;font-size:14px;color:#999;text-align:right;padding:0}.plans .plan-features>li>strong{font-weight:bold;color:#888}.plans .plan-button{display:inline-block;vertical-align:top;padding:0 15px;line-height:30px;font-weight:bold;color:#fff;text-transform:uppercase;text-decoration:none;text-shadow:0 1px 1px rgba(0,0,0,.7);background:#7c69a3;border:1px solid #222;border-bottom-color:#000;border-radius:3px;background-image:-webkit-linear-gradient(top,#eae6f2,#dcd9e2);background-image:-moz-linear-gradient(top,#eae6f2,#dcd9e2);background-image:-o-linear-gradient(top,#eae6f2,#dcd9e2);background-image:linear-gradient(to bottom,#eae6f2,#dcd9e2);-webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.2), inset 0 2px rgba(255, 255, 255, 0.1), 0 1px rgba(0, 0, 0, 0.1);box-shadow: inset 0 1px rgba(255, 255, 255, 0.2), inset 0 2px rgba(255, 255, 255, 0.1), 0 1px rgba(0, 0, 0, 0.1)}.plans .plan-button:active{color:rgba(255,255,255,.95);background:#6f5e96;border-color:#000 #222 #222;background-image:-webkit-linear-gradient(top,#6f5e96,#8770b9);background-image:-moz-linear-gradient(top,#6f5e96,#8770b9);background-image:-o-linear-gradient(top,#6f5e96,#8770b9);background-image:linear-gradient(to bottom,#6f5e96,#8770b9);-webkit-box-shadow:inset 0 1px 2px rgba(0,0,0,.25);box-shadow:inset 0 1px 2px rgba(0,0,0,.25)}.plans  .plan:not(.plan-tall) > form > input[type="image"]
+{filter:url(data:image/svg+xml;utf8,<svg\ xmlns=\'http://www.w3.org/2000/svg\'><filter\ id=\'grayscale\'><feColorMatrix\ type=\'matrix\'\ values=\'0.3333\ 0.3333\ 0.3333\ 0\ 0\ 0.3333\ 0.3333\ 0.3333\ 0\ 0\ 0.3333\ 0.3333\ 0.3333\ 0\ 0\ 0\ 0\ 0\ 1\ 0\'/></filter></svg>#grayscale);filter:gray;-webkit-filter:grayscale(100%)}.plans>.plan-tall{margin:0;background-color:#fff;border-width:2px;border-radius:7px}.plans>.plan-tall>.plan-title{font-size:18px}.plans>.plan-tall>.plan-price{width:100px;height:100px;line-height:100px;font-size:21px;border-radius:50px}.plans>.plan-tall>.plan-features{font-size:15px}.plans>.plan-tall>.plan-button{padding:0 16px;line-height:32px;background-image:-webkit-linear-gradient(top,#5bd891,#3c8966);background-image:-moz-linear-gradient(top,#5bd891,#3c8966);background-image:-o-linear-gradient(top,#5bd891,#3c8966);background-image:linear-gradient(to bottom,#5bd891,#3c8966)}.plan-tall+.plan{border-left:0}.plans ._selz-btn-label{border-radius:4px!important;padding:11px 40px!important}.plans ._selz-btn-add-on{display:none!important}.plans .plan-tall ._selz-btn-label{background:#44a66a!important;border-color:#419f65!important;border-bottom-color:#358253!important;box-shadow: inset 0 1px 1px #47ad6f,0 1px 1px rgba(0,0,0,0.2) !important}</style>    </head>
+    <body class="rtl page page-id-24 page-template page-template-oopbook-landing page-template-oopbook-landing-php" dir="rtl"><div style="margin: 0 auto; width: 1024px;">
+<h1 style="text-align: center;">
+		<span style="font-size:36px;"><font color="#b2ce56"><b>תכנות מונחה עצמים מאפס בPHP</b></font></span><span style="color: #b2ce56; font-weight: bold; font-size: 36pt;"> </span><br/>
+	</h1>
+<h2 style="text-align: center;">
+		הספר שילמד אותך מהו תכנות מונחה עצמים, איך לכתוב קוד מהר יותר ופשוט יותר עם פחות שגיאות<br/>
+		ועכשיו מותאם ל-<strong>PHP 7</strong><br/>
+	</h2>
+<p>
+		&nbsp;
+	</p>
+<table width="100%">
+<tbody>
+<tr>
+<td style="width: 400px;" valign="top">
+<p>
+						<span style="font-size:16px;">תמיד רצית להבין מה זה תכנות מונחה עצמים ולמה צריך אותו?</span>
+					</p>
+<p>
+						<span style="font-size:16px;">בספר הזה תלמד בדיוק מה זה ותגלה גם:</span>
+					</p>
+<ul>
+<li>
+							<span style="font-size:16px;">מי המציא תכנות מונחה עצמים ולמה זה הופך את העבודה שלך לקלה יותר</span>
+						</li>
+<li>
+							<span style="font-size:16px;">מהן מחלקות ואובייקטים ואיך להשתמש בהם</span>
+						</li>
+<li>
+							<span style="font-size:16px;">מה הן תבניות העיצוב ואיך תוכל לפתור בעזרתם כל בעיה</span>
+						</li>
+<li>
+							<span style="font-size:16px;">מהם ארבעת היתרונות הגדולים של OOP שישנו את צורת המחשבה שלך להיות מתכנת טוב יותר</span>
+						</li>
+<li>
+							<span style="font-size:16px;">איך לעשות את הקוד קל יותר להבנה ככה שתוכל להיכנס לפרויקט מהר יותר ולהבין את הקוד טוב יותר</span>
+						</li>
+<li>
+							<span style="font-size:16px;">איך עובד הזכרון במחשב ואיפה יכולים להסתתר הבאגים שאתה לא רואה</span>
+						</li>
+<li>
+							<span style="font-size:16px;">מה אפשר לעשות כדי להבטיח פחות שגיאות מראש ולבלות פחות זמן על תיקון באגים</span>
+						</li>
+<li>
+							<span style="font-size:16px;">איך לעבוד על פרוייקט בצוות בלי להפריע אחד לשני ומה לעשות אם שניכם צריכים קוד מסוים</span>
+						</li>
+<li>
+							<span style="font-size:16px;">איפה לקחת קוד מוכן ולחתוך 90% מזמן הפיתוח</span>
+						</li>
+<li>
+							<span style="font-size:16px;">איך לעבוד נכון עם מסד נתונים</span>
+						</li>
+<li>
+							<span style="font-size:16px;">ועוד הרבה שאלות אחרות</span>
+						</li>
+</ul>
+<p>
+						<span style="font-size:16px;">את התשובות לשאלות האלה את הולך ללמד מתוך הספר ולהצטרף למליוני המתכנתים שבחרו בתכנות מונחה עצמים עם תפיסת עולם שונה לגמרי.</span>
+					</p>
+<p>
+						&nbsp;
+					</p>
+<p>
+						<span style="font-size:16px;">בגרסה השלישית של הספר אתה הולך לקבל את ההסברים הכי פשוטים בעברית שיסבירו אחת ולתמיד מה זה תכנות מונחה עצמים ולמה צריך אותו,&nbsp;יחד עם תשובות לעשרות שאלות נפוצות שנשאלות ברחבי הפורומים שוב ושוב. תקבל טיפים שיקלו בפיתוח, קריאה והבנה של קוד ויהפכו אותך למתכנת טוב יותר.</span>
+					</p>
+<p>
+						<span style="font-size:16px;">רוצה?</span>
+					</p>
+<p>
+						&nbsp;
+					</p>
+<p>
+						&nbsp;
+					</p>
+<p style="text-align: justify;">
+						<span style="font-size: 12pt;">משוכנע? <a href="#packages" title="מעבר להזמנת חבילות הלימוד השונות">עבור אל החבילות</a>.</span>
+					</p>
+<p>
+						&nbsp;
+					</p>
+</td>
+<td width="120">
+					&nbsp;
+				</td>
+<td valign="top">
+					<img alt="ספר תכנות מונחה עצמים" height="680" src="../wp-content/uploads/2014/10/420x680xbook420680-optimized.jpg.pagespeed.ic.HMM5HPuVH2.jpg" style="width: 420px; height: 680px;" width="420"/>
+				</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style="max-width: 594px; margin: 0 auto;">
+<h1 dir="rtl" style="text-align: center;">
+		לפתח מערכת גדולה זה לא קל<br/>
+	</h1>
+<p>
+		&nbsp;
+	</p>
+<p dir="rtl" style="text-align: justify;">
+		<span style="font-size:16px;">כשאתה מתיישב לכתוב מערכת גדולה אתה חייב לחשוב על כמות דברים מעיקה,&nbsp;כמו ממה להתחיל, איך לארגן את הקוד, אילו מחלקות ליצור ואיך למנוע באגים בעתיד. </span>
+	</p>
+<p dir="rtl" style="text-align: justify;">
+		<span style="font-size:16px;">אם לעולם לא שמעת על מחלקות &#8211;&nbsp;לא נורא, אבל אם כן, אתה עוד יותר בבעיה. אתה חייב לדעת מה יורש ממה, איך להעביר מידע מפה לשם ובמה אסור להשתמש בשום פנים ואופן כי זה מתכון בטוח&nbsp;לבעיות בעתיד. </span>
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;">מצד שני, אם תעשה הכל נכון,&nbsp;תוכל לכתוב קוד ברמה גבוה, בארגון טוב, קוד עמיד בפני באגים ובפחות זמן. בהרבה פחות זמן. באמצעות מודולריות וניצול חוזר של קוד אפשר לחסוך המון זמן,&nbsp;ואני אראה לך איך.</span>
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;"><span>אך ראשית אני רוצה שתרגיש כמה זה חשוב, כי מבחינתך קוד טוב יאפשר לך:</span></span>
+	</p>
+<ul class="green">
+<li dir="rtl">
+<p dir="rtl" style="text-align: justify;">
+				<span style="font-size:16px;"><span>לסיים מהר יותר פרויקט ולמצוא זמן ליותר לקוחות נוספים;</span></span>
+			</p>
+</li>
+<li dir="rtl">
+<p dir="rtl" style="text-align: justify;">
+				<span style="font-size:16px;"><span>לנצח את הבאגים והתחזוקה ששואבים ממך כוח, כסף ו/או עצבים;</span></span>
+			</p>
+</li>
+<li dir="rtl">
+<p dir="rtl" style="text-align: justify;">
+				<span style="font-size:16px;"><span>למצוא עבודה חדשה או לקבל תלוש שכר גבוה יותר;</span></span>
+			</p>
+</li>
+<li dir="rtl">
+<p dir="rtl" style="text-align: justify;">
+				<span style="font-size:16px;"><span>לעלות ברמה העצמית עם סט חדש של ידע ויכולות.</span></span>
+			</p>
+</li>
+</ul>
+<p style="text-align: justify;">
+		<span style="font-size:16px;"><span>וכל זה &#8211;&nbsp;על ידי שינוי פשוט של הגישה לפיתוח.</span></span>
+	</p>
+<p>
+		&nbsp;
+	</p>
+<h1 dir="rtl" style="text-align: center;">
+		אם אתה מוכן ללמוד ולהתקדם<br/>
+	</h1>
+<p style="text-align: justify;">
+		&nbsp;
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;"><span>לא משנה אם זה לצורך לימוד, למציאת עבודה, לקבלת יתרון משמעותי על המתחרים או פשוט כי קראת מדריכים אחרים והתחלת </span></span><span style="font-size: 16px; line-height: 25.6000003814697px; text-align: justify;">אינטואיטיבית&nbsp;</span><span style="font-size:16px;"><span>לתכנת בצורה נכונה </span></span><span style="font-size:16px;"><span>&#8211; אם החלטת ללמוד תכנות מונחה עצמים&nbsp;אתה בדרך הנכונה.</span></span>
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;"><span>תכנות </span>מונחה עצמים הוא כיום&nbsp;שיטת העבודה המועדפת על מיליוני מתכנתים מסביב לעולם, שעובדים עם מעל שלושים שפות תכנות שונות.</span>
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;"><span>תכנות </span>מונחה עצמים הוא לא רק כלי, אלא תפיסת עולם שחוסכת עשרות אלפי דולרים לחברות פיתוח, ואלפי שורות קוד למתכנתים בפרויקטים מכל הגדלים. כל זאת ועוד, תכנות מונחה עצמים עוזר לך לארגן את הקוד כך שהוא יהיה ברור יותר, קל יותר לתחזוקה ולשינוי בעתיד, ויהיו בו פחות באגים. וזה בכלל חיוני&nbsp;אם אתה עובד בצוות, או אפילו עובד לבד אבל מתכנן לצאת מהגראז&#39;. תראה לבד מה אמרו גולשי האתר על תכנות מונחה עצמים.</span>
+	</p>
+<p>
+		&nbsp;
+	</p>
+<h1 dir="rtl" style="text-align: center;">
+		מה שאמרו גולשי האתר אחרי שלמדו תכנות מונחה עצמים<br/>
+	</h1>
+<p>
+		&nbsp;
+	</p>
+<p dir="rtl">
+		<span style="font-size:16px;"><span><img alt="תמונה של תגובת משתמש באתר מהלל תכנות מונחה עצמים" height="348px;" src="../wp-content/uploads/2014/10/oopreview1.png.pagespeed.ce.1aTKLXuTrL.png" style="border:none;" width="565px;"/></span></span>
+	</p>
+<p dir="rtl">
+		<span style="font-size:16px;"><span><img alt="עוד תמונה של תגובת משתמש באתר מהלל תכנות מונחה עצמים" height="191px;" src="../wp-content/uploads/2014/10/oopreview2.png.pagespeed.ce.jXMEu6y_Jm.png" style="border:none;" width="565px;"/></span></span><br/>
+		&nbsp;
+	</p>
+<p dir="rtl" style="text-align: justify;">
+		<span style="font-size:16px;"><span>אם לא מתאים לך להמתין חצי שנה כדי להבין את זה או פשוט לא להבין מילה, אני מציג לפניך את ערכת הלימוד לתכנות מונחה עצמים ב-PHP.</span></span>
+	</p>
+<h1>
+		תכנות מונחה עצמים ב-PHP מאפס &#8211;&nbsp;הספר<br/>
+	</h1>
+<p style="text-align: justify;">
+		&nbsp;
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;"><span>תכנות מונחה עצמים וכן עבודה נכונה הם לא עניין קל, אבל בספר הזה אני הולך להסביר את הדקויות, את הטריקים ואת השגיאות הנפוצות בתכנות מונחה עצמים. </span></span>
+	</p>
+<p dir="rtl" style="text-align: justify;">
+		&nbsp;
+	</p>
+<p dir="rtl" style="text-align: justify;">
+		<span style="font-size:16px;"><span>בסוף <strong>הספר</strong> אתה: </span></span>
+	</p>
+<ul class="green">
+<li dir="rtl">
+<p dir="rtl" style="text-align: justify;">
+				<span style="font-size:16px;"><span>תגלה מי המציא תכנות מונחה עצמים ולמה, ואם אפשר להסתדר בלעדיו;</span></span>
+			</p>
+</li>
+<li dir="rtl">
+<p dir="rtl" style="text-align: justify;">
+				<span style="font-size:16px;"><span>תופתע לטובה מעלייה בביצועים;</span></span>
+			</p>
+</li>
+<li dir="rtl">
+<p dir="rtl" style="text-align: justify;">
+				<span style="font-size:16px;"><span>תראה כמה יותר (ופחות!) שורות קוד תצטרך לכתוב;</span></span>
+			</p>
+</li>
+<li dir="rtl">
+<p dir="rtl" style="text-align: justify;">
+				<span style="font-size:16px;"><span>תהיה מסוגל לעשות שינויים במערכת קיימת בקלות;</span></span>
+			</p>
+</li>
+<li dir="rtl">
+<p dir="rtl" style="text-align: justify;">
+				<span style="font-size:16px;"><span>תוכל להבין את המדריכים הכי קשים באינטרנט בקלות;</span></span>
+			</p>
+</li>
+<li dir="rtl">
+<p dir="rtl" style="text-align: justify;">
+				<span style="font-size:16px;"><span>תעבוד נכון עם מסדי נתונים.</span></span>
+			</p>
+</li>
+</ul>
+<p dir="rtl" style="text-align: justify;">
+		&nbsp;
+	</p>
+<p dir="rtl" style="text-align: justify;">
+		<span style="font-size:16px;"><span>בסוף <strong>סדרת מדריכי הווידאו</strong> אתה תהיה מסוגל:</span></span>
+	</p>
+<ul class="green">
+<li dir="rtl">
+<p dir="rtl" style="text-align: justify;">
+				<span style="font-size:16px;"><span>לפתח מערכת בעצמך מאפס בהתאמה אישית שלך;</span></span>
+			</p>
+</li>
+<li dir="rtl">
+<p dir="rtl" style="text-align: justify;">
+				<span style="font-size:16px;"><span>ליצור בסיס לפריימוורק משלך ולהבין איך הכול עובד בכל הרמות;</span></span>
+			</p>
+</li>
+<li dir="rtl">
+<p dir="rtl" style="text-align: justify;">
+				<span style="font-size:16px;"><span>לנצל את כל הידע התיאורטי שרכשת ולקשר אותו למצבים אמיתיים, כך שתדע מתי להשתמש בכל יכולות&nbsp;השפה.</span></span>
+			</p>
+</li>
+</ul>
+<p style="text-align: justify;">
+		&nbsp;
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;"><span>והוספתי לך גם כמה <strong>בונוסים</strong>:</span></span>
+	</p>
+<ul class="blue">
+<li dir="rtl">
+<p dir="rtl" style="text-align: justify;">
+				<span style="font-size:16px;"><span>מדריך וידאו מוקלט בנושא&nbsp;<strong>כתיבת תוסף (פלאגין) לוורדפרס</strong> בגישה מונחית עצמים,&nbsp;אשר&nbsp;ייתן לך את הבסיס ליצירת תוספים ולכתיבה נכונה עם וורדפרס.</span></span>
+			</p>
+</li>
+<li dir="rtl">
+<p dir="rtl" style="text-align: justify;">
+				<span style="font-size:16px;"><span>ובונוס אדיר:&nbsp;<strong>ריאיון עבודה מוקלט</strong> עם תשובות נכונות והסברים לשאלות מריאיונות עבודה אמיתיים,&nbsp;שיטיס את הסיכויים שלך לקבל&nbsp;משרה בעשרות אחוזים.</span></span>
+			</p>
+</li>
+</ul>
+<p dir="rtl" style="text-align: justify;">
+		&nbsp;
+	</p>
+<p dir="rtl" style="text-align: justify;">
+		<span style="font-size:16px;"><span>רוצה? ונוסף על כל זה&nbsp;אני מבטיח שאתה תלמד מזה משהו חדש גם אם כבר למדת תכנות מונחה עצמים. תראה בעצמך:</span></span><br/>
+		&nbsp;
+	</p>
+<h1 dir="rtl" style="text-align: center;">
+		מה אומרים קוראים אחרים<br/>
+	</h1>
+<table border="0" cellpadding="1" cellspacing="1" style="width: 100%;">
+<tbody>
+<tr>
+<td valign="top">
+					<img alt="תמונה של יהודה" height="90" src="../wp-content/uploads/2014/10/90x90xyehudashamaev.png.pagespeed.ic.GjfZWkut3w.jpg" style="font-size: 16px; line-height: 25.6000003814697px; width: 90px; height: 90px; margin-left: 10px; margin-right: 10px; float: right;" width="90"/>
+				</td>
+<td>
+<blockquote>
+<p dir="rtl" style="line-height: 20.7999992370605px; text-align: justify;">
+							<span style="font-size: 16px; line-height: 1.6;">בגדול <strong>ידעתי OOP לפני</strong> שקניתי את הספר. הסיבה שקניתי אותו&nbsp;היא שחשבתי שהוא יעזור לי להתמקצע בתחום.&nbsp;<u><strong>ובהחלט למדתי משם הרבה!</strong></u> את הידע שרכשתי מהספר&nbsp;שילבתי במערכת גדולה שאני עובד עליה די הרבה זמן.</span>
+						</p>
+<p style="line-height: 20.7999992370605px;">
+							<span style="font-size:14px;">יהודה שמייב</span>
+						</p>
+</blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p>
+		&nbsp;
+	</p>
+<table border="0" cellpadding="1" cellspacing="1" style="width: 100%;">
+<tbody>
+<tr>
+<td valign="top">
+					<img alt="תמונה של עומר" height="90" src="../wp-content/uploads/2014/10/omerkatz.png.pagespeed.ce.Lt6NWV5TTq.png" style="font-size: 16px; line-height: 25.6000003814697px; width: 90px; height: 90px; margin-left: 10px; margin-right: 10px; float: right;" width="90"/><br/>
+					&nbsp;
+				</td>
+<td>
+<blockquote>
+<p style="line-height: 20.7999992370605px; text-align: justify;">
+							<span style="font-size: 16px; line-height: 1.6;">היי&nbsp;אלכס.&nbsp;<strong>החומר שלמדתי עזר לי מאוד,</strong>&nbsp;גם בפיתוח המערכת שהראיתי לך&#8230;&nbsp;רואים את השינוי, בהחלט עזר לי מאוד!&nbsp;באמצעות הכלים שלימדת, הקוד הפך מקוד לא מסודר לקוד מאורגן, קריא היטב וקל לתחזוק, בהחלט שווה ללמוד את החומר!</span>
+						</p>
+<p dir="rtl" style="line-height: 20.7999992370605px;">
+							<span style="font-size:14px;"><em>עומר כץ</em></span>
+						</p>
+</blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p dir="rtl">
+		&nbsp;
+	</p>
+<table border="0" cellpadding="1" cellspacing="1" style="width: 100%;">
+<tbody>
+<tr>
+<td valign="top">
+					<img alt="תמונה של קיריל" height="90" src="../wp-content/uploads/2014/10/90x90xkirillchudinov.png.pagespeed.ic.3oHueAqdN5.jpg" style="font-size: 16px; line-height: 25.6000003814697px; width: 90px; height: 90px; margin-left: 10px; margin-right: 10px; float: right;" width="90"/><br/>
+					&nbsp;
+				</td>
+<td>
+<blockquote>
+<p dir="rtl" style="line-height: 20.7999992370605px; text-align: justify;">
+							<span style="font-size: 16px;">התקשרו אלי לעשות ריאיון עבודה טלפוני למשרת מתכנת. על הרבה שאלות עניתי, אבל על עוד יותר שאלות לא עניתי בכלל. המראיין אמר ש<u><strong>הידע שלי נמוך מהממוצע</strong></u>&nbsp;ושאני לא מתאים להם.</span>
+						</p>
+<p style="line-height: 20.7999992370605px; text-align: justify;">
+							<span style="font-size: 16px;">אמרתי לו שיתקשר מחר, ואני אדע הכול. הוא לא האמין לי בגרוש,&nbsp;אבל בלילה למדתי את הספר ואת הווידאו כמו משוגע, ויום למחרת התראיינתי למשרה אחרת.&nbsp;המראיין השני בסוף השיחה הודה לי שהוא <u><strong>הופתע מאוד&nbsp;מהשימוש הכל-כך נכון ותקין</strong></u> שלי בתכנות מונחה עצמים, ושהרבה אנשים עם שנות ניסיון רבות&nbsp;אפילו לא מתקרבים לכתיבה כזו נכונה. מובן שהסברתי לו שכל העניין הוא ביכולות הלימוד העצמי שלי.</span>
+						</p>
+<p style="line-height: 20.7999992370605px; text-align: justify;">
+							<span style="font-size: 16px;">אבל ידעתי ממי ללמוד. תודה על הספר המדהים ועל המשרה החדשה שלי!</span>
+						</p>
+<p style="line-height: 20.7999992370605px; text-align: justify;">
+							<span style="font-size:14px;"><em>קיריל צ&#39;ודינוב</em></span>
+						</p>
+</blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p>
+		&nbsp;
+	</p>
+<h1 dir="rtl" style="text-align: center;">
+		קבל עשר שנות ניסיון בכמה שעות מ-16 פרקים עיקריים<br/>
+	</h1>
+<p>
+		&nbsp;
+	</p>
+<p dir="rtl" style="text-align: justify;">
+		<span style="font-size:16px;"><span>לספר הזה נכנס עשור של שנות ניסיון מנקודת מבט של מתכנת, יועץ ומדריך. אני הולך לעזור לך להימנע מאותן הבעיות, התקלות והאבנים שמתכנתים נתקלים בהם או למדו באופן מוטעה. וכדי להפריך את כל אי-ההבנות שיכולות לצוץ,&nbsp;אספתי בשבילך&nbsp;שאלות לכל פרק שמתכנתים שואלים שוב ושוב&nbsp;בפורומים&nbsp;</span></span><span style="font-size: 16px; line-height: 25.6000003814697px; text-align: justify;">במשך שנים.</span>
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;"><span>בסוף הספר אתה לא רק תכיר את כל היכולות של PHP בתחום התכנות מונחה העצמים, אלא גם תדע במה להשתמש ומתי, ובמה לא להשתמש בשום פנים ואופן.</span></span>
+	</p>
+<h1 style="text-align: center;">
+		הנה מה שאתה הולך ללמוד<br/>
+	</h1>
+<p>
+		&nbsp;
+	</p>
+<div class="propositionBlock">
+<h3 dir="rtl">
+			תכנות מונחה עצמים מאפס &#8211; הספר<br/>
+		</h3>
+<p>
+			&nbsp;
+		</p>
+<p>
+			<span style="font-size:16px;">בספר מחכים לך 120 עמודים מעשירים. הם מחולקים ל-16 פרקים&nbsp;בנושאים הבאים:</span>
+		</p>
+<ol style="list-style-type:decimal;">
+<li dir="rtl">
+<p dir="rtl">
+					<span style="font-size:16px;">היסטוריית התכנות מונחה העצמים<br/>
+					בפרק הזה אתה תכיר את שורשיו של תכנות מונחה עצמים ואילו&nbsp;שפת תכנות פרסמו בתחנות האוטובוס.</span>
+				</p>
+</li>
+<li dir="rtl">
+<p dir="rtl">
+					<span style="font-size:16px;"><span>מבוא לתכנות מונחה עצמים</span><br/>
+					כאן תפגוש את המושג&nbsp;אבסטרקציה (הפשטה), את ההבדל בין ארון לאוסף קרשים וגם סוגי מחלקות בסיסיים. נוסף על כך&nbsp;תכיר את הטעות הראשונה בתכנון מחלקות. אלה הן&nbsp;אבני הבנייה של תכנות מונחה עצמים, וגם אותן&nbsp;תכיר.</span>
+				</p>
+</li>
+<li dir="rtl">
+<p dir="rtl">
+					<span style="font-size:16px;"><span>הסבר פשוט על ירושה</span><br/>
+					הפרק הזה יגלה לך מי באמת עושה שיעורי בית בבית הספר:&nbsp;האבא או הילד ואיך להכריח את הילד לעשות את מה שאביו&nbsp;עושה. תלמד גם&nbsp;למה מחלקת עמוד לא צריכה לרשת ממחלקת מסד נתונים.</span>
+				</p>
+</li>
+<li dir="rtl">
+<p dir="rtl">
+					<span style="font-size:16px;"><span>מילים מיוחדות שאפשר לראות בקוד</span><br/>
+					כמו הרשאות גישה והגבלות אחרות שמתכנתים [לא מזוכיסטים]&nbsp;כופים אחד על השני ונהנים.</span>
+				</p>
+</li>
+<li dir="rtl">
+<p dir="rtl">
+					<span style="font-size:16px;"><span>היתרונות של תכנות מונחה עצמים</span><br/>
+					השאלה האהובה בריאיונות עבודה על ארבעת העקרונות האולטימטיביים של תכנות מונחה עצמים: פולימורפיזם, כימוס, הורשה והפשטה, ואיך הם עושים את החיים שלך קלים יותר.</span>
+				</p>
+</li>
+<li dir="rtl">
+<p dir="rtl">
+					<span style="font-size:16px;"><span>ממשק (אינטרפייס)</span></span><br/>
+					<span style="font-size: 16px; line-height: 25.6000003814697px; text-align: right;">ממשק הוא כמו</span><span style="font-size: 16px; line-height: 25.6000003814697px; text-align: right;">&nbsp;חוזה, וזה&nbsp;כנראה&nbsp;</span><span style="font-size:16px;">הדבר הכי חשוב בתכנות.&nbsp;הוא&nbsp;דומה למה שאתה מקבל בדואר מחברת החשמל,&nbsp;ובלעדיו אין סדר בעולם.&nbsp;הוא זה שדואג לעשות את הקוד שלך קל לתחזוקה.</span>
+				</p>
+</li>
+<li dir="rtl">
+<p dir="rtl">
+					<span style="font-size:16px;"><span>עוד קצת על טיפוסי נתונים ו-Type Hinting</span><br/>
+					עוד יותר סדר, הגבלות ומציאת באגים עוד לפני הרצת הקוד.</span>
+				</p>
+</li>
+<li dir="rtl">
+<p dir="rtl">
+					<span style="font-size:16px;"><span>עוד כל מיני דברים בתוך הסוגריים המסולסלים</span><br/>
+					או: מה עוד מחלקה יכולה לכלול, כמו מאפיינים, מתודות, קבועים, ואיך לעשות באמצעותם קוד מובן במיוחד.</span>
+				</p>
+</li>
+<li dir="rtl">
+<p dir="rtl">
+					<span style="font-size:16px;"><span>מתודות קסם</span><br/>
+					הוקוס פוקוס אוי ויי ווקוס,&nbsp;או:&nbsp;פרק שלם על מתודות קסם שיסביר איך לדפוק לעצמך את הקוד בצורה מגניבה לחלוטין (או לחתוך פינות פה ושם).</span>
+				</p>
+</li>
+<li dir="rtl">
+<p dir="rtl">
+					<span style="font-size:16px;">סטטיות (Static)<br/>
+					הפרק שאני הכי לא אוהב, אבל חובה לדעת, יספר קצת על איך עובד זיכרון, מה משותף לכמה מחלקות, מה זה סינגלטון (Singelton) ולמה זה נחשב לרוע עולמי. כמו כן, נסביר&nbsp;מה זה כריכה סטטית מאוחרת (Late Static Binding), וזה דווקא חיוני.</span>
+				</p>
+</li>
+<li dir="rtl">
+<p dir="rtl">
+					<span style="font-size:16px;"><span>Traits</span><br/>
+					זהו קונספט שקיים כמעט רק ב-PHP. נדבר גם על איך עושים ירישה מרובה (שאסור לעשות) ופיצ&#39;רים חסרי תועלת אחרים.</span>
+				</p>
+</li>
+<li dir="rtl">
+<p dir="rtl">
+					<span style="font-size:16px;"><span>מרחבי שמות </span><br/>
+					כאן תלמד מה לעשות אם אתה לא מתכנת על אי בודד או שהורדת קוד מהאינטרנט ושם&nbsp;כבר תפסו את השם של המחלקה שלך.</span>
+				</p>
+</li>
+<li dir="rtl">
+<p dir="rtl">
+					<span style="font-size:16px;"><span>טעינה אוטומטית (Autoloading)</span><br/>
+					בפרק הזה תלמד שייבוא קבצים ידנית&nbsp;זה כבר לא באופנה ותכיר גם סטנדרטים שהתקבלו בעולם התכנות&nbsp;על השמות שאתה נותן למחלקות.</span>
+				</p>
+</li>
+<li dir="rtl">
+<p dir="rtl">
+					<span style="font-size:16px;"><span>קומפוזר &#8211; ניהול תלויות של PHP</span><br/>
+					אם אתה הולך לקרוא רק פרק אחד מהספר &#8211; הנה הוא. בתקווה שאחר כך אתה הולך לכתוב 90% פחות קוד או אולי לתרום לכל מתכנתי PHP מסביב לעולם.</span>
+				</p>
+</li>
+<li dir="rtl">
+<p dir="rtl">
+					<span style="font-size:16px;"><span>PDO &#8211; גישה מונחית עצמים לבסיסי נתונים</span><br/>
+					זה היה יכול להיות ספר נפרד, אבל זה כאן וזה מסביר איך להיפטר מכל מיני פונקציות ב-PHP&nbsp;ולהתחבר למסד נתונים בגישה&nbsp;מונחית עצמים.</span>
+				</p>
+</li>
+<li dir="rtl">
+<p dir="rtl">
+					<span style="font-size:16px;"><span>מאגר (Repository)</span><br/>
+					פרק שלם על תבנית העיצוב שמפשיטה&nbsp;את&nbsp;מסד הנתונים ועושה את הקוד שלך הגיוני יותר, מסודר יותר והרבה יותר קל לשינוי כשאתה עובד עם מסד נתונים בתכנות מונחה עצמים.</span>
+				</p>
+</li>
+</ol></div>
+<p dir="rtl">
+		&nbsp;
+	</p>
+<p dir="rtl" style="text-align: justify;">
+		<span style="font-size:16px;"><span>בסיום הספר תוכל לראות איך הידע התיאורטי הופך למערכת דמוית פייסבוק בהרכבה עצמית בעזרת&nbsp;MVC עם סדרת מדריכי הווידאו. תוכל לעקוב שלב אחר שלב, צעד אחר צעד ולראות אותי ואת המסך שלי בעבודה, עם כל האבנים, הטעויות, המבנה והכתיבה שיש בדרך. </span></span>
+	</p>
+<p>
+		<span style="font-size: 16px; line-height: 25.6000003814697px;">זה מה שתלמד מהם:</span>
+	</p>
+<p>
+		&nbsp;
+	</p>
+<div class="propositionBlock">
+<p style="text-align: center;">
+			<span style="font-size: 16px;text-align:center;">סדרת מדריכי&nbsp;וידאו </span>
+		</p>
+<h3 dir="rtl">
+			צעד אחר צעד<br/>
+			ליצירת רשת חברתית בגישות OOP ו-MVC<br/>
+		</h3>
+<p dir="rtl">
+			&nbsp;
+		</p>
+<p dir="rtl" style="text-align: justify;">
+			<span style="font-size:16px;">הקלטה בלעדית של מתכנת בפעולה&nbsp;עם תהליך הפיתוח המלא של בסיס לרשת חברתית עם קיר דמוי פייסבוק. תוכל לעקוב אחרי השימוש&nbsp;בפועל בידע שלך, תראה איך מאורגנת מערכת אמיתית מהבסיס ואיך היא מפותחת תוך שמירה על הכללים הנכונים, עם רמת קוד גבוה ובעזרת&nbsp;MVC ב-11 חלקים:</span>
+		</p>
+<p dir="rtl">
+			&nbsp;
+		</p>
+<ol style="list-style-type:decimal;">
+<li dir="rtl">
+<p dir="rtl">
+					<span style="font-size:16px;"><span>מבוא</span><br/>
+					פרק זה יכניס אותנו לראש של כתיבת מערכת MVC: נסדר את השרת ונכין מבנה תיקיות&nbsp;למערכת החדשה.</span>
+				</p>
+</li>
+<li dir="rtl">
+<p dir="rtl">
+					<span style="font-size:16px;"><span>ניתוב (Routing)</span><br/>
+					בפרק הזה נכתוב נתב (ראוטר)&nbsp;משלנו, ניצור את קובץ ההתחלה index.php, שאליו נפנה את כל הבקשות הנכנסות, ומתוכו נפעיל את הקונטרולר המתאים.</span>
+				</p>
+</li>
+<li dir="rtl">
+<p dir="rtl">
+					<span style="font-size:16px;"><span>טעינה אוטומטית (Autoloading)</span><br/>
+					בפרק הזה נלמד לכתוב טוען אוטומטי משלנו לפי כל הסטנדרטים המקובלים ולוודא&nbsp;שאנחנו&nbsp;לא שוכחים לטעון קבצים בקוד שלנו.</span>
+				</p>
+</li>
+<li dir="rtl">
+<p dir="rtl">
+					<span style="font-size:16px;"><span>קומפוזר (Composer)</span><br/>
+					ברק הזה נלמד כיצד לעבוד עם קומפוזר,&nbsp;מנהל התלויות בין&nbsp;ספריות PHP,&nbsp;נתקין כמה ספריות שהפרויקט שלנו ישתמש בהן&nbsp;וגם נחליף את ה-Autoloader&nbsp;שכתבנו&nbsp;באחד מוכן ויעיל.</span>
+				</p>
+</li>
+<li dir="rtl">
+<p dir="rtl">
+					<span style="font-size:16px;"><span>רינדור תבניות MVC</span><br/>
+					נכתוב מנגנון הוצאת פלט ורינדור&nbsp;שיאפשר לנו ליצור תבניות משלנו ולהציג אותן&nbsp;למשתמש במידת הצורך, יחד עם הפרמטרים שנעביר.</span>
+				</p>
+</li>
+<li dir="rtl">
+<p dir="rtl">
+					<span style="font-size:16px;"><span>ה-Buisness Logic של הרשמת משתמשים</span><br/>
+					נלמד איך ליצור מערכת הרשמה עם פונקציות לעבודה עם סיסמאות, נחמוק מטעות הקונטרולר השמן ונתחבר למסד נתונים בצורה נכונה ו-OOPית.</span>
+				</p>
+</li>
+<li dir="rtl">
+<p dir="rtl">
+					<span style="font-size:16px;"><span>הזרקת תלויות (Dependency Injection)</span><br/>
+					פרק כפול שידון בנושא התלויות,&nbsp;ניהול נכון שלהן, הזרקה ו-Dependency Injection Container. לאחר מכן ניקח את כל התיאוריה הזו ונכניס אותה לתוך הפרויקט שלך.</span>
+				</p>
+</li>
+<li dir="rtl">
+<p dir="rtl">
+					<span style="font-size:16px;"><span>הזדהות, התחברות וניהול Sessions:&nbsp;מי זה מי</span><br/>
+					נוסיף זיהוי משתמשים לפי סיסמה לאחר שנרשמו, נבדוק שרק למשתמשים מזוהים יש גישה לקיר וננהל את ה-Session בגישה&nbsp;מונחית עצמים.</span>
+				</p>
+</li>
+<li dir="rtl">
+<p dir="rtl">
+					<span style="font-size:16px;"><span>קיר ההודעות</span><br/>
+					בפרק הזה נוסיף למערכת שלנו קיר עם הודעות ונאפשר לכל משתמש לכתוב עליו משהו. נוסיף לזה גם קצת שימוש חוזר בתבניות תצוגה מעולם ה-MVC&nbsp;ושימוש חוזר במחלקות תחת&nbsp;רוטב עבודה עם מסד.</span>
+				</p>
+</li>
+<li dir="rtl">
+<p dir="rtl">
+					<span style="font-size:16px;"><span>קצת SEO, או:&nbsp;איפה נכנסים פה תגיות מטא, כותרות, תפריטים צדדיים וכל מה שנשאר&nbsp;</span>כדי שתהיה לנו תמונה של צ&#39;אק נוריס מזוהה עם כפתור התנתקות בצד.</span>
+				</p>
+</li>
+<li dir="rtl">
+<p dir="rtl">
+					<span style="font-size:16px;"><span>סיכום</span><br/>
+					נעבור על מה שלמדנו ונוודא שאתה יודע מה לעשות הלאה אם תרצה להוסיף עוד תכונות למערכת או לכתוב מערכת גדולה אחרת משלך.</span>
+				</p>
+</li>
+</ol></div>
+<p>
+		&nbsp;
+	</p>
+<p>
+		<span style="font-size:16px;">ובנוסף לאלה:</span>
+	</p>
+<p>
+		&nbsp;
+	</p>
+<div class="propositionBlock">
+<p style="text-align: center;">
+			אקסטרה #1: מדריך וידאו
+		</p>
+<h3>
+			&nbsp;יצירת תוסף WordPress בגישה מונחית עצמים<br/>
+		</h3>
+<p>
+			&nbsp;
+		</p>
+<p dir="rtl" style="text-align: justify;">
+			<span style="font-size:16px;"><span>אנחנו נבנה ביחד תוסף&nbsp;ל-WordPress תוך כדי ניצול הידע והקונספטים שלמדת ורכשת במהלך הספר. התוסף&nbsp;שלנו יצבע קטעי קוד שנמצאים בין תגיות <span style="font-family:courier new,courier,monospace;">[php]</span>. אנו נשים דגש על ממשקים, על שימוש בספריות חיצוניות ואפילו נדגים קצת שיפור ביצועים עם מתודות קסם ונדבר על תבנית עיצוב&nbsp;בשם Proxy.</span></span>
+		</p>
+<p style="text-align: justify;">
+			&nbsp;
+		</p>
+<p dir="rtl" style="text-align: justify;">
+			<span style="font-size:16px;"><span>הכי חשוב לדעת:&nbsp;אתה בכלל לא חייב להכיר את WordPress או להשתמש בה. את כל הדברים הספציפיים למערכת אני הולך להסביר כבר מההתחלה, ומשם נמשיך בתכנות מונחה עצמים נקי.</span></span>
+		</p>
+<p>
+			&nbsp;
+		</p>
+<p>
+			&nbsp;
+		</p>
+<p>
+			&nbsp;
+		</p>
+<p>
+			&nbsp;
+		</p>
+<p>
+			&nbsp;
+		</p>
+<p>
+			&nbsp;
+		</p>
+<p>
+			&nbsp;
+		</p>
+<p>
+			&nbsp;
+		</p>
+</p></div>
+<p>
+		&nbsp;
+	</p>
+<div class="propositionBlock">
+<p style="text-align: center;">
+			<span style="line-height: 20.7999992370605px;">אקסטרה #2:</span>
+		</p>
+<h3 style="text-align: center;">
+			ריאיון עבודה מוקלט על&nbsp;תכנות מונחה עצמים<br/>
+		</h3>
+<p>
+			&nbsp;
+		</p>
+<p dir="rtl" style="text-align: justify;">
+			<span style="font-size:16px;"><span>רומן רסלין, מומחה טכני בכיר, שכיהן כמנהל פיתוח במספר סטארטאפים, והאיש מאחורי קבוצת פרופליי ואיזרה הולך להתקיל אותנו בריאיון עבודה טלפוני עם השאלות הכי טריקיות שאפשר למצוא. </span></span>
+		</p>
+<p style="text-align: justify;">
+			&nbsp;
+		</p>
+<p dir="rtl" style="text-align: justify;">
+			<span style="font-size:16px;"><span><strong>למעלה מחמישים&nbsp;שאלות</strong> מחכות לך.&nbsp;הן נשאלות עבור כמעט כל שפת תכנות קיימת, ולמעט מספר שאלות מועט,&nbsp;הן לא מסוימות ל-PHP ויתאימו לך גם אם אתה עובד עם Java, C#, .NET, Ruby או שפות מונחות עצמים אחרות.</span></span>
+		</p>
+<p style="text-align: justify;">
+			&nbsp;
+		</p>
+<p dir="rtl" style="text-align: justify;">
+			<span style="font-size:16px;"><span>יחד עם השאלות אתה הולך לקבל את התשובות המצופות, וגם את התשובות הכי נכונות (וכן, לפעמים גם מראיינים טועים), הסברים לתשובות וניתוח: למה השאלה נשאלה ומה היא בודקת.</span></span>
+		</p>
+<p dir="rtl">
+			<span style="font-size:16px;"><span>הנה&nbsp;דוגמה קטנה:</span></span>
+		</p>
+<!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+<audio class="wp-audio-shortcode" id="audio-24-1" preload="none" style="width: 100%; visibility: hidden;" controls="controls"><source type="audio/mpeg" src="../wp-content/uploads/2014/09/questionExample230a.mp3?_=1"/><a href="../wp-content/uploads/2014/09/questionExample.mp3">//s.phpguide.co.il/wp-content/uploads/2014/09/questionExample.mp3</a></audio>
+<p>
+			&nbsp;
+		</p>
+<p style="text-align: center;">
+			<strong><span style="font-size:16px;"><span>חמש קטגוריות שונות של שאלות</span></span></strong>
+		</p>
+<p>
+			<span style="font-size:16px;"><span>שאלות תיאוריה:</span></span>
+		</p>
+<ul class="blue">
+<li dir="rtl">
+				<span style="font-size:16px;"><span>למה להשתמש ב-OOP? תוכל להסביר את הרעיון מאחוריו?</span></span>
+			</li>
+<li dir="rtl">
+				<span style="font-size:16px;"><span>האם PHP היא שפה מונחית עצמים? (ולא, היא לא)</span></span>
+			</li>
+<li dir="rtl">
+				<span style="font-size:16px;"><span>תוכל להסביר את ההבדל בין מחלקה מופשטת לממשק?</span></span>
+			</li>
+</ul>
+<p>
+			<span style="font-size:16px;"><span>שאלות הבנה:</span></span>
+		</p>
+<ul class="blue">
+<li dir="rtl">
+				<span style="font-size:16px;"><span>מה זה ממשק ולמה צריך אותו?</span></span>
+			</li>
+<li dir="rtl">
+				<span style="font-size:16px;"><span>איך משתמשים בממשקים ולמה?</span></span>
+			</li>
+<li dir="rtl">
+				<span style="font-size:16px;"><span>תוכל להביא דוגמאות של אבסטרקציות (הפשטות)?</span></span>
+			</li>
+</ul>
+<p>
+			<span style="font-size:16px;"><span>שאלות ניסיון:</span></span>
+		</p>
+<ul class="blue">
+<li dir="rtl">
+				<span style="font-size:16px;"><span>מה הדרך העדיפה לכתוב הערות בקוד?</span></span>
+			</li>
+<li dir="rtl">
+				<span style="font-size:16px;"><span>איך תעביר מידע ממחלקה למחלקה?</span></span>
+			</li>
+<li dir="rtl">
+				<span style="font-size:16px;"><span>תוכל להסביר את המושגים Dependency Injection ו-Coupling?</span></span>
+			</li>
+</ul>
+<p dir="rtl">
+			<span style="font-size:16px;"><span>שאלות פתוחות:</span></span>
+		</p>
+<ul class="blue">
+<li dir="rtl">
+				<span style="font-size:16px;"><span>מה עדיף &#8211;&nbsp;PDO או MySQLi? למה?</span></span>
+			</li>
+<li dir="rtl">
+				<span style="font-size:16px;"><span>האם חריגות (Exceptions)&nbsp;צריכות להיות חלק מהממשק?</span></span>
+			</li>
+<li dir="rtl">
+				<span style="font-size:16px;"><span>מה אתה חושב על Dynamic Typing לעומת Static Typing?</span></span>
+			</li>
+</ul>
+<p dir="rtl">
+			<span style="font-size:16px;"><span>שאלות מתקדמות:</span></span>
+		</p>
+<ul class="blue">
+<li dir="rtl">
+				<span style="font-size:16px;"><span>תוכל למנות מספר מבני נתונים?</span></span>
+			</li>
+<li dir="rtl">
+				<span style="font-size:16px;"><span>אילו תבניות עיצוב אתה מכיר?</span></span>
+			</li>
+<li dir="rtl">
+				<span style="font-size:16px;"><span>מה עדיף:&nbsp;הורשה או קומפוזיציה?</span></span>
+			</li>
+</ul></div>
+<p>
+		&nbsp;
+	</p>
+<p dir="rtl">
+		<span style="font-size:16px;"><span>ואם יישארו שאלות:</span></span>
+	</p>
+<h1 dir="rtl" style="text-align: center;">
+		תמיכה מלאה מהאתר הישראלי ללימוד PHP<br/>
+	</h1>
+<p dir="rtl" style="text-align: justify;">
+		<span style="font-size:16px;"><span>צוות האתר וחברי הקהילה יעמדו לרשותך, יחד עם כ-200 מדריכים ומאמרים במגוון נושאים ולמעלה מאלפיים שאלות שכבר נענו.&nbsp;בשונה מספר שנקנה בחנות ספרים, הספר והקורס המלא האלה מגיעים עם תמיכה קהילתית מאחוריהם והם מבוססים על שאלות ריאליות ועל תהליך הלימוד האמיתי שעוברים מתכנתים שונים במהלך הקריירה שלהם.</span></span>
+	</p>
+<h1 dir="rtl" style="text-align: center;">
+		מוכן לכתוב כל מערכת שתרצה?<br/>
+	</h1>
+<p dir="rtl" style="text-align: justify;">
+		<span style="font-size:16px;"><span>הגיע הזמן להתקדם מ-&quot;פיתוח אתרים&quot; לתכנות מונחה עצמים ולהפוך לכל-יכול. מה שאתה רוצה &#8211; אתה יכול. </span></span>
+	</p>
+<p dir="rtl" style="text-align: justify;">
+		<span style="font-size:16px;"><span>מערכת ענקית? &nbsp;</span>מערכת לא סטנדרטית?&nbsp;<span>דרישות מיוחדות? אין בעיה!</span></span>
+	</p>
+<p dir="rtl" style="text-align: justify;">
+		<span style="font-size:16px;"><span>וכל זה תוך שמירה על קוד איכותי, בלי להצטרך לעגל פינות ובלי קוד ספגטי מגעיל.</span></span>
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;"><span>אתה לא חייב יותר לשלוח את הלקוחות למתחרים, לסרב לבקשות או להיתקע בלי לדעת מאיפה להתחיל את הפרויקט שלך. </span></span>
+	</p>
+<h1 dir="rtl" style="text-align: center;">
+		אתה לא חייב לעבוד בלילה<br/>
+	</h1>
+<p dir="rtl" style="text-align: justify;">
+		<span style="font-size:16px;"><span>במקום לכתוב קוד שדורש כתיבה מחדש, תתחיל לכתוב קוד איכותי ומודולרי, ובמקום לשבת שעות על באגים, תמנע אותם עוד לפני שהם נוצרים.</span></span>
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;"><span>רוב האנשים מעדיפים לבלות עם המשפחה והחברים במקום לשבת שעות נוספות&nbsp;במשרד, ובמקום לנפות שגיאות על קפאין בשעות הקטנות של הלילה ולהיות תקוע עם פרויקט &#8211;&nbsp;יכולת כבר להיות במהלך הפרויקט השני, עם לקוח אחר או עם&nbsp;משימה כיפית יותר.</span></span>
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;"><span>מה אתה מעדיף?</span></span>
+	</p>
+<h1 dir="rtl" style="text-align: center;">
+		למעסיקים יש בחירה ברורה מאוד בנושא<br/>
+	</h1>
+<p dir="rtl" style="text-align: justify;">
+		<span style="font-size:16px;"><span>בשביל משרה טובה &#8211; אלו הן דרישות חובה!&nbsp;מעסיקים היום לא פריירים;&nbsp;הם&nbsp;מחפשים את המתכנתים הטובים ביותר, והם מוכנים לשלם. משכורת מעל 20 אלף שקל היא משכורת ריאלית לחלוטין אפילו למישהו שלא סיים תיכון או שיצא טרי מהצבא. וכן, אני מדבר על אנשים אמתיים לחלוטין שאני מכיר ועשו את זה.</span></span>
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;"><span>אתה יכול להשקיע עשור משלך, ואיש לא מבטיח שתעלה רמה אם תמשיך לעשות את מה שאתה עושה היום. </span></span>
+	</p>
+<h1 dir="rtl" style="text-align: center;">
+		כמה זה עולה?<br/>
+	</h1>
+<p dir="rtl" style="text-align: justify;">
+		<span style="font-size:16px;"><span>עבור&nbsp;קורסים מקצועיים שיקנו לך את אותו הידע &#8211;&nbsp;היית נפרד מ-15,000 ש&quot;ח בערך.&nbsp;</span></span><span style="font-size:16px;"><span>זו עסקה&nbsp;מדהים&nbsp;אם תסתכל עליה&nbsp;בתור השקעה.</span></span>
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;"><span>אם תשיג מזה </span>רק עוד לקוח אחד בשנה בזכות תוצר איכותי יותר, עם פחות בזבוז זמן על תחזוקה ופיתוח &#8211; תסיים עם כמה עשרות אלפי שקלים אקסטרה. בייחוד אם תוכל לקחת פרויקטים עם דרישות להתאמה אישית.</span>
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;"><span>ואם אתה מטפס בקריירה שלך בתור שכיר,&nbsp;העלאה קטנה במשכורת שלך באלף ש&quot;ח בלבד תצא לך בבונוס של 12,000 ש&quot;ח כבר בשנה הראשונה&nbsp;ובהרבה יותר בתקופה של העשור הבא. תוכל לספור לבד כמה תרוויח מהעלאה גדולה יותר.</span></span>
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;"><span>תלמידים שלי טענו שהחבילה צריכה לעלות לא פחות מ-1000 שקל, אבל אני רציתי לעשות אותה נגישה גם עבור המתכנתים הצעירים יותר ולכן </span><strong>התעקשתי על מחיר נמוך יותר</strong>,&nbsp;</span><span style="font-size:16px;"><span>וזה כולל גם את הספר בגרסה אלקטרונית וגם את סדרת מדריכי הווידאו,&nbsp;שנותנים לך את כל הרקע התיאורטי והידע המעשי לפתח את מה שתרצה.</span></span>
+	</p>
+<p>
+		<a id="packages" name="packages"></a>
+	</p>
+<div class="plans">
+			<div class="plan">
+				<h2 class="plan-title">
+					הספר
+					<br/><br/>
+					<span dir="ltr" style="color: rgb(168, 153, 162);">97 ₪</span>
+				</h2>
+				<img width="41" height="60" src="../wp-content/uploads/2014/10/41x60xbookonly.png.pagespeed.ic.f5a7UxEET2.jpg" alt="הספר בלבד">
+				<ul class="plan-features">
+					<li><strong>הספר</strong> תכנות מונחה עצמים בגרסת epub PDF ו-mobi<br/><br/></li>
+				</ul>
+				<div dir="ltr">
+					<script data-selz-t="_selz-btn-default" data-selz-a="modal" data-selz-ct="ffffff" data-selz-cb="c4bdd4" data-selz-b="http://selz.co/1tcqTk7"></script>
+				</div>
+			</div>
+			<div class="plan">
+				<h2 class="plan-title">
+					הספר + וידאו
+					<br/><br/>
+					<span dir="ltr" style="color: rgb(168, 153, 162);">497 ₪</span>
+				</h2>
+				<img width="116" height="60" src="../wp-content/uploads/2014/10/116x60xbookplusvid.png.pagespeed.ic.qIUks5oJyH.jpg" alt="הספר ומדריך הוידאו">
+				<ul class="plan-features">
+					<li><strong>הספר</strong> תכנות מונחה עצמים בגרסת epub PDF ו-mobi <br/><br/></li>
+					<li><strong>מדריכי וידאו</strong> צעד אחר צעד ליצירת מערכת רשת חברתית בגישת OOP ו-MVC<br/><br/></li>
+				</ul>
+				<div dir="ltr">
+					<script data-selz-t="_selz-btn-default" data-selz-a="modal" data-selz-ct="ffffff" data-selz-cb="c4bdd4" data-selz-b="http://selz.co/1tcvUZU"></script>
+				</div>
+			</div>
+			<div class="plan plan-tall">
+				<h2 class="plan-title">
+					החבילה המלאה
+					<br/><br/>
+					<s style="font-size:12px">997</s>
+					<span dir="ltr" style="color: rgb(168, 153, 162);">497 ₪</span>
+				</h2>
+				<img width="112" height="60" src="../wp-content/uploads/2014/10/112x60xfullpackage.png.pagespeed.ic.J67F6txDeh.png" alt="החבילה המלאה">
+				<ul class="plan-features">
+					<li><strong>הספר</strong> תכנות מונחה עצמים בגרסת epub PDF ו-mobi <br/><br/></li>
+					<li><strong>מדריכי וידאו</strong> צעד אחר צעד ליצירת מערכת רשת חברתית בגישת OOP ו-MVC<br/><br/></li>
+					<li><strong>ראיון עבדוה</strong> מוקלט OOP<br/><br/></li>
+					<li><strong>מדריך וידאו</strong> ליצירת תוסף WordPress בגישת OOP<br/><br/></li>
+				</ul>
+				<div dir="ltr">
+					<script data-selz-t="_selz-btn-default" data-selz-a="modal" data-selz-ct="ffffff" data-selz-cb="44a66a" data-selz-b="http://selz.co/1xvnADI" data-selz-lg="true"></script>
+				</div>
+			</div>
+		</div>
+<p>
+		&nbsp;
+	</p>
+<h1 style="text-align: center;">
+		אחריות מנצחת: החזר כספי מלא למשך 60 יום בלי לשאול שאלות<br/>
+	</h1>
+<p style="text-align: justify;">
+		<span style="font-size:16px;">אתה לא לוקח סיכונים. החבילות&nbsp;מגיעות עם&nbsp;<strong>אחריות מלאה ל-100%&nbsp;החזר כספי מלא למשך 60 ימים</strong>. במילים פשוטות &ndash; לא אהבת משהו?&nbsp;שלח לי אימייל&nbsp;ותקבל את כל כספך בחזרה, בלי לשאול שאלות.</span>
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;">כן, אתה אפילו יכול ללמוד בחינם למשך חודשיים, לשלוח לי אימייל, ובכל זאת&nbsp;לקבל בחזרה את כל כספך. אני עושה את זה כי אני בטוח שאתה תאהב אותו, בדיוק כמו האנשים שקראו אותו לפניך.</span>
+	</p>
+<p>
+		&nbsp;
+	</p>
+<h1>
+		יש שאלות נוספות?<br/>
+	</h1>
+<p><div class="wpcmsdev-toggle">
+<h3 class="toggle-title"><a href="#toggle-%d7%94%d7%90%d7%9d-%d7%96%d7%94-%d7%9e%d7%aa%d7%90%d7%99%d7%9d-%d7%9c%d7%99"><i class="fa fa-plus icon-for-inactive"></i><i class="fa fa-minus icon-for-active"></i>האם זה מתאים לי?</a></h3>
+<div id="toggle-%d7%94%d7%90%d7%9d-%d7%96%d7%94-%d7%9e%d7%aa%d7%90%d7%99%d7%9d-%d7%9c%d7%99" class="toggle-content">
+<p>
+		<span style="font-size:16px;"><strong>הספר הזה בשבילך אם:</strong></span>
+	</p>
+<ul>
+<li style="text-align: justify;">
+			<span style="font-size:16px;">אתה מתכנת שרוצה להתקדם ולהעלות ברמה &#8211; תוכל להזניק את הידע שלך ולנצל עוד יכולות מתקדמות של השפה.</span><br/>
+			&nbsp;
+		</li>
+<li style="text-align: justify;">
+			<span style="font-size:16px;">אתה פרילנסר או עוסק עצמאי &#8211; תוכל ליצור פרויקטים גדולים ואיכותיים, לנצל את הקוד שלך מפרויקט אחד בפרויקט אחר כדי לקצר את זמני הפיתוח ולהתבזבז פחות על תחזוקה.</span><br/>
+			&nbsp;
+		</li>
+<li style="text-align: justify;">
+			<span style="font-size:16px;">שכיר &#8211; תוכל להעלות את ההכשרה המקצועית שלך, שמשפיעה בצורה ישירה על רמת השכר שלך.</span><br/>
+			&nbsp;
+		</li>
+<li style="text-align: justify;">
+			<span style="font-size:16px;">אתה לוקח קורס אחר ורוצה שהוא לא יעבור סתם &#8211; תוכל למצוא כאן את הפרטים הקטנים שקורסים אחרים נוטים&nbsp;לפספס ותלמד איך להשתמש בידע שלך בצורה מעשית כדי&nbsp;להבטיח שהלימוד שלך מועיל ומעמיק.</span>
+		</li>
+</ul>
+<p>
+		&nbsp;
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;">שים לב, <span style="color:#FF0000;"><strong>הספר הזה ממש לא בשבילך</strong></span> אם אתה רק רק מתחיל ללמוד PHP ואין לך ידע קודם בנושא. הנושאים המלומדים לא מיועדים למתחילים. על מנת שתוכל להפיק תועלת מהחומר, חייבת להיות לך רמה בסיסית בתכנות ב-PHP. למשל, אתה צריך:</span>
+	</p>
+<p style="text-align: justify;">
+		&nbsp;&#8211; לדעת ליצור ולקרוא לפונקציות שמקבלות ארגומנטים ומחזירות ערכים;<br/>
+		&nbsp;&#8211; להיות מסוגל להכניס ערכים למערך ולגשת אליהם;<br/>
+		&nbsp;&#8211; להכיר את טיפוסי הנתונים הבסיסיים: מחרוזת, בוליאן וכו&#39;;<br/>
+		&nbsp;&#8211; לדעת מה זה ייבוא קבצים (<span style="font-family:courier new,courier,monospace;">include</span> ו-<span style="font-family:courier new,courier,monospace;">require</span>) ולהיות רגיל להפריד את הקוד לקבצים שונים.<br/>
+		&nbsp;
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size: 16px; line-height: 1.6;">אם אחד הסעיפים ברשימה הזו לא נכון לגביך, או ש-PHP היא שפת התכנות הראשונה שלך והתחלת ללמוד אותה לפני פחות מחצי שנה &#8211;&nbsp;אל תקנה את הספר הזה כרגע.&nbsp;הוא עומד לבלבל אותך יותר מאשר לעזור לך.</span>
+	</p>
+</div>
+</div>
+<p>
+		<span style="line-height: 20.7999992370605px;">
+<div class="wpcmsdev-toggle">
+<h3 class="toggle-title"><a href="#toggle-%d7%90%d7%99%d7%96%d7%95-%d7%97%d7%91%d7%99%d7%9c%d7%94-%d7%9c%d7%91%d7%97%d7%95%d7%a8"><i class="fa fa-plus icon-for-inactive"></i><i class="fa fa-minus icon-for-active"></i>איזו חבילה לבחור?</a></h3>
+<div id="toggle-%d7%90%d7%99%d7%96%d7%95-%d7%97%d7%91%d7%99%d7%9c%d7%94-%d7%9c%d7%91%d7%97%d7%95%d7%a8" class="toggle-content">
+<p></span>
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;"><span style="line-height: 20.7999992370605px;">תלוי במוכנות שלך להשקיע.&nbsp;מובן שהחבילה המלאה היא הכי משתלמת ומקנה את הידע והכוח הרב ביותר, אבל גם הספר לבד הוא למעלה מ-100 עמודים&nbsp;של תוכן מקצועי שיהפכו&nbsp;אותך למתכנת טוב יותר.</span></span>
+	</p>
+<p>
+		<span style="line-height: 20.7999992370605px;"></p>
+</div>
+</div>
+<p></span>
+	</p>
+<p>
+		<span style="line-height: 20.7999992370605px;">
+<div class="wpcmsdev-toggle">
+<h3 class="toggle-title"><a href="#toggle-%d7%a7%d7%a0%d7%99%d7%aa%d7%99-%d7%90%d7%aa-%d7%94%d7%a1%d7%a4%d7%a8-%d7%91%d7%a2%d7%91%d7%a8-%d7%90%d7%a4%d7%a9%d7%a8%d7%9c%d7%a9%d7%93%d7%a8%d7%92-%d7%9c%d7%97%d7%91%d7%99%d7%9c%d7%aa-%d7%94"><i class="fa fa-plus icon-for-inactive"></i><i class="fa fa-minus icon-for-active"></i>קניתי את הספר בעבר. אפשר&nbsp;לשדרג לחבילת הוידאו או שזה ספר חדש?</a></h3>
+<div id="toggle-%d7%a7%d7%a0%d7%99%d7%aa%d7%99-%d7%90%d7%aa-%d7%94%d7%a1%d7%a4%d7%a8-%d7%91%d7%a2%d7%91%d7%a8-%d7%90%d7%a4%d7%a9%d7%a8%d7%9c%d7%a9%d7%93%d7%a8%d7%92-%d7%9c%d7%97%d7%91%d7%99%d7%9c%d7%aa-%d7%94" class="toggle-content">
+<p></span>
+	</p>
+<p>
+		אם כבר קנית וקראת את הספר &#8211; תוכל לשלוח לי מייל (<a href="../cdn-cgi/l/email-protection.html#6c010d05002c1c041c0b19050809420f03420500531f190e06090f185149285b49555849285b492d5c49285b49555b49285b495558495e5c49285b492d5e49285b49X9C%20%D7%94%D7%97%D7%91%D7%99%D7%9C%D7%94%20%D7%94%D7%9E%D7%9C%D7%90%D7%94%20%D7%9C%D7%A7%D7%95%D7%A8%D7%90%20%D7%94%D7%A1%D7%A4%D7%A8&amp;body=%D7%94%D7%99%20%D7%90%D7%9C%D7%9B%D7%A1%2C%0A%0A%D7%A7%D7%A8%D7%90%D7%AA%D7%99%20%D7%9B%D7%91%D7%A8%20%D7%90%D7%AA%20%D7%94%D7%A1%D7%A4%D7%A8%20%D7%95%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%A9%D7%93%D7%A8%D7%92%20%D7%9C%D7%97%D7%91%D7%99%D7%9C%D7%94%20%D7%94%D7%9E%D7%9C%D7%90%D7%94.%20%D7%A9%D7%9C%D7%97%20%D7%9C%D7%99%20%D7%91%D7%91%D7%A7%D7%A9%D7%94%20%D7%90%D7%AA%20%D7%94%D7%A7%D7%95%D7%93%20%D7%A9%D7%99%D7%99%D7%AA%D7%9F%20%D7%9C%D7%99%20%D7%94%D7%A0%D7%97%D7%94%20%D7%91%D7%92%D7%95%D7%93%D7%9C%20%D7%A9%D7%9C%20%D7%9E%D7%97%D7%99%D7%A8%20%D7%94%D7%A1%D7%A4%D7%A8%20%D7%A2%D7%9C%20%D7%94%D7%97%D7%91%D7%99%D7%9C%D7%94%20%D7%94%D7%9E%D7%9C%D7%90%D7%94.%0A%0A%D7%AA%D7%95%D7%93%D7%94"><span class="__cf_email__" data-cfemail="d6bbb7bfba96a6bea6b1a3bfb2b3f8b5b9f8bfba">[email&#160;protected]</span><script data-cfhash='f9e31' type="text/javascript">
+/* <![CDATA[ */!function(){try{var t="currentScript"in document?document.currentScript:function(){for(var t=document.getElementsByTagName("script"),e=t.length;e--;)if(t[e].getAttribute("data-cfhash"))return t[e]}();if(t&&t.previousSibling){var e,r,n,i,c=t.previousSibling,a=c.getAttribute("data-cfemail");if(a){for(e="",r=parseInt(a.substr(0,2),16),n=2;a.length-n;n+=2)i=parseInt(a.substr(n,2),16)^r,e+=String.fromCharCode(i);e=document.createTextNode(e),c.parentNode.replaceChild(e,c)}t.parentNode.removeChild(t);}}catch(u){}}()/* ]]> */</script></a>) ולקבל&nbsp;קוד מיוחד שייתן לך הנחה על החבילה המלאה בסכום של מחיר הספר, ככה שלא תצטרך לשלם פעמיים.
+	</p>
+<p>
+		<span style="line-height: 20.7999992370605px;"></p>
+</div>
+</div>
+<p></span>
+	</p>
+<p><div class="wpcmsdev-toggle">
+<h3 class="toggle-title"><a href="#toggle-%d7%9e%d7%94-%d7%90%d7%9d-%d7%91%d7%9b%d7%9c-%d7%96%d7%90%d7%aa-%d7%9c%d7%90-%d7%90%d7%91%d7%99%d7%9f-%d7%a9%d7%95%d7%9d-%d7%93%d7%91%d7%a8"><i class="fa fa-plus icon-for-inactive"></i><i class="fa fa-minus icon-for-active"></i>מה אם בכל זאת לא אבין שום דבר?</a></h3>
+<div id="toggle-%d7%9e%d7%94-%d7%90%d7%9d-%d7%91%d7%9b%d7%9c-%d7%96%d7%90%d7%aa-%d7%9c%d7%90-%d7%90%d7%91%d7%99%d7%9f-%d7%a9%d7%95%d7%9d-%d7%93%d7%91%d7%a8" class="toggle-content">
+<p style="text-align: justify;">
+		<span style="font-size:16px;">אם ניסית לקרוא מדריכים אחרים באינטרנט,&nbsp;אתה בטח כבר מבין&nbsp;שקריאה על תכנות מונחה עצמים זה כמו קריאה על חוויות מגלישת סקי בחרמון. תיאור מילולי של ירידה במורד לא משתווה להרגשה האמיתית של האדרנלין בדם ומשב הרוח הקריר&nbsp;לפנים. הסבר </span><span style="font-size: 16px; line-height: 25.6000003814697px; text-align: justify;">על תכנות מונחה עצמים</span><span style="font-size:16px;">,&nbsp;בין אם קצר או&nbsp;ארוך,&nbsp;לא שווה הרבה בלי שתנסה ותראה איך כל התיאוריה נכנסת לפעולה.</span>
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;">כאן תוכל לא רק ללמוד&nbsp;את התיאוריה מאחורי עיקרון זה או אחר, אלא גם לראות ולנסות הכול באופן מעשי. כל דוגמאות הקוד בספר ניתנות להעתקה ולשינוי על ידי קישורים מיוחדים שתוכל לגשת אליהם. לאחר מכן תוכל לצפות במדריכי הווידאו וללמוד </span><span style="font-size: 16px; line-height: 25.6000003814697px; text-align: justify;">צעד אחד צעד</span><span style="font-size:16px;">&nbsp;איך מנצלים את יכולות השפה ליצירת מערכת אמיתית.</span>
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;">נוסף על כך, לרשותך עומדת הקהילה ופורום פעיל באתר,&nbsp;שבו תמיד תוכל לשאול שאלות ולקבל הסברים נוספים, בשונה מספר סתמי שקינת בחנות ואין לך מה לעשות אם תיתקל בחלקים לא ברורים.</span>
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;">כמו כן, הספר משלב בתוכו דוגמאות,&nbsp;</span><span style="font-size: 16px; line-height: 25.6000003814697px; text-align: justify;">שתוכל להתעמק בהן,</span><span style="font-size:16px;">&nbsp;ושאלות ותרגילים שתוכל&nbsp;לבצע. אם תעקוב אחר אלו ותבצע את התרגילים המוצעים, אני מבטיח שלא רק תבין, אלא גם תוכל להרגיש בעצמך את השיפור. </span>
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size: 16px; line-height: 25.6000003814697px;">מה שבטוח הוא ש</span><span style="font-size: 16px; line-height: 25.6000003814697px;">אם לא תנסה להבין &#8211; לעולם&nbsp;לא תבין. אם תנסה, יש סיכוי טוב שתבין. הדוגמאות המעשיות והאחריות המנצחת מבטיחות שההשקעה שלך לא תלך סתם.</span>
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;">עם זאת, אם&nbsp;תחליט שלא תרצה להשקיע, ששום דבר לא מובן או שזה לא בשבילך, מכל סיבה שהיא &ndash; תוכל לקבל את מלוא כספך בחזרה. אבל&nbsp;תאר&nbsp;לעצמך את ההרגשה כשתסיים לקרוא את הספר ותבין הכול.</span>
+	</p>
+</div>
+</div>
+<p><div class="wpcmsdev-toggle">
+<h3 class="toggle-title"><a href="#toggle-%d7%9e%d7%94-%d7%90%d7%9d-%d7%90%d7%91%d7%99%d7%9f-%d7%94%d7%9b%d7%9c"><i class="fa fa-plus icon-for-inactive"></i><i class="fa fa-minus icon-for-active"></i>מה אם אבין הכל?</a></h3>
+<div id="toggle-%d7%9e%d7%94-%d7%90%d7%9d-%d7%90%d7%91%d7%99%d7%9f-%d7%94%d7%9b%d7%9c" class="toggle-content">
+<p style="text-align: justify;">
+		<span style="font-size:16px;">אחרי שתלמד ותבין את כל הנושאים הקשורים לתכנות מונחה עצמים,&nbsp;תוכל לעשות מה שעד היום לא יכולת:</span>
+	</p>
+<ul>
+<li style="text-align: justify;">
+			<span style="font-size:16px;">לפתח אתרים ומערכות גדולות יותר תוך כדי שמירה על סדר;</span>
+		</li>
+<li style="text-align: justify;">
+			<span style="font-size:16px;">לעלות רמה ביכולות הפיתוח שלך;</span>
+		</li>
+<li style="text-align: justify;">
+			<span style="font-size:16px;">להעלות את הביצועים שלך &ndash; להספיק יותר בפחות זמן;</span>
+		</li>
+<li style="text-align: justify;">
+			<span style="font-size:16px;">לעבוד בצוות בצורה קלה יותר תוך כדי הסכמה על ממשקים ומניעת שגיאות של מתכנתים אחרים;</span>
+		</li>
+<li style="text-align: justify;">
+			<span style="font-size:16px;">לכתוב קוד איכותי, עמיד יותר בפני שגיאות וקל יותר לתחזוק;</span>
+		</li>
+<li style="text-align: justify;">
+			<span style="font-size:16px;">לנצל קוד מפרויקט לפרויקט;</span>
+		</li>
+<li style="text-align: justify;">
+			<span style="font-size:16px;">לדרוש משכורת גבוהה יותר בעתיד;</span>
+		</li>
+<li style="text-align: justify;">
+			<span style="font-size:16px;">להבין ולנצל קוד של אנשים אחרים מספריות שונות ולחסוך זמן פיתוח.</span>
+		</li>
+</ul>
+<p style="text-align: justify;">
+		<span style="font-size:16px;"><span style="font-size:16px;">מהרשימה הזו אפשר לראות למה מיליוני מתכנתים בכל העולם מעדיפים תכנות מונחה עצמים על&nbsp;תכנות פרוצדורלי. השאלה היא אם אתה רוצה ומוכן ללמוד.&nbsp;אם כן &ndash; הנה&nbsp;בדיוק מה שאתה צריך.</span></span>
+	</p>
+</div>
+</div>
+<p><div class="wpcmsdev-toggle">
+<h3 class="toggle-title"><a href="#toggle-%d7%94%d7%90%d7%9d-%d7%94%d7%a1%d7%a4%d7%a8-%d7%a7%d7%99%d7%99%d7%9d-%d7%91%d7%92%d7%a8%d7%a1%d7%94-%d7%9e%d7%95%d7%93%d7%a4%d7%a1%d7%aa-%d7%90%d7%95-%d7%a8%d7%a7-%d7%90%d7%9c%d7%a7%d7%98%d7%a8%d7%95"><i class="fa fa-plus icon-for-inactive"></i><i class="fa fa-minus icon-for-active"></i>האם הספר קיים בגרסה מודפסת או רק אלקטרונית?</a></h3>
+<div id="toggle-%d7%94%d7%90%d7%9d-%d7%94%d7%a1%d7%a4%d7%a8-%d7%a7%d7%99%d7%99%d7%9d-%d7%91%d7%92%d7%a8%d7%a1%d7%94-%d7%9e%d7%95%d7%93%d7%a4%d7%a1%d7%aa-%d7%90%d7%95-%d7%a8%d7%a7-%d7%90%d7%9c%d7%a7%d7%98%d7%a8%d7%95" class="toggle-content">
+<p style="text-align: justify;">
+		<span style="font-size:16px;">הספר מגיע&nbsp;רק בגרסאות האלקטרוניות AZW3 (אמזון), ePub</span><span style="font-size:16px;">&nbsp;(לניידים) ו-PDF לקריאה מכל מכשיר שנוח לך.</span>
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;">רוב הקוראים מעדיפים אותו&nbsp;דווקא בצורה הזו, משום שהגרסה האלקטרונית מאפשרת להשתמש </span><span style="font-size: 16px; line-height: 25.6000003814697px; text-align: justify;">בקלות&nbsp;</span><span style="font-size:16px;">בקישורים המובנים בספר ולהעתיק&nbsp;דוגמאות קוד בנוחות. כאן תוכל לשחק עם הקוד ולערוך אותו במהלך הקריאה, וזה ייתן לך נסיון מעשי בדברים שתקרא.</span>
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;">נוסף לכך, בחרתי גופן גדול ונוח לקריאה מהמסך כדי שהקריאה תהיה פשוטה ונוחה.&nbsp;עם זאת תמיד תוכל להדפיס את הספר במדפסת בעצמך, וזה&nbsp;עדיין יהיה זול יותר מהזמנת הספר בכריכה. מדובר בכ-60 דפים מודפסים משני הצדדים. זמן הדפסה משוער על מדפסת לייזר עכשווית קטן מחמש דקות.</span>
+	</p>
+</div>
+</div>
+<p><div class="wpcmsdev-toggle">
+<h3 class="toggle-title"><a href="#toggle-%d7%90%d7%a0%d7%99-%d7%a8%d7%95%d7%a6%d7%94-%d7%9c%d7%9c%d7%9e%d7%95%d7%93-%d7%aa%d7%9b%d7%a0%d7%95%d7%aa-%d7%9e%d7%95%d7%a0%d7%97%d7%94-%d7%a2%d7%a6%d7%9e%d7%99%d7%9d-%d7%90%d7%91%d7%9c-%d7%90%d7%a0"><i class="fa fa-plus icon-for-inactive"></i><i class="fa fa-minus icon-for-active"></i>אני רוצה ללמוד תכנות מונחה עצמים אבל אני מתכנת בשפה אחרת, כמו C# או Java</a></h3>
+<div id="toggle-%d7%90%d7%a0%d7%99-%d7%a8%d7%95%d7%a6%d7%94-%d7%9c%d7%9c%d7%9e%d7%95%d7%93-%d7%aa%d7%9b%d7%a0%d7%95%d7%aa-%d7%9e%d7%95%d7%a0%d7%97%d7%94-%d7%a2%d7%a6%d7%9e%d7%99%d7%9d-%d7%90%d7%91%d7%9c-%d7%90%d7%a0" class="toggle-content">
+<p style="text-align: justify;">
+		<span style="font-size:16px;">מצד אחד הרבה מאוד מהדברים שתוכל ללמוד מכאן נכונים בצורה כזו או אחרת לכל שפת תכנות מונחית עצמים, כולל C#, Java &amp; Ruby, אבל כל הדוגמאות ומדריכי הווידאו המוצגים הם מסוימים לשפה, לספריות ולכלים של עולם ה-PHP.</span>
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;">אם אתה לא מתנגד ללמוד על הדרך גם PHP &#8211; זו חבילה מעולה בשבילך, שאת הידע ממנה תוכל לנצל גם בשפות אחרות בהמשך. אם אתה מחפש משהו מסוים לשפה שלך,&nbsp;יתאים לך יותר מקור אחר.</span>
+	</p>
+</div>
+</div>
+<p><div class="wpcmsdev-toggle">
+<h3 class="toggle-title"><a href="#toggle-%d7%9e%d7%94%d7%9f-%d7%93%d7%a8%d7%9b%d7%99-%d7%94%d7%aa%d7%a9%d7%9c%d7%95%d7%9d-%d7%94%d7%90%d7%a4%d7%a9%d7%a8%d7%99%d7%95%d7%aa"><i class="fa fa-plus icon-for-inactive"></i><i class="fa fa-minus icon-for-active"></i>מהן דרכי התשלום האפשריות?</a></h3>
+<div id="toggle-%d7%9e%d7%94%d7%9f-%d7%93%d7%a8%d7%9b%d7%99-%d7%94%d7%aa%d7%a9%d7%9c%d7%95%d7%9d-%d7%94%d7%90%d7%a4%d7%a9%d7%a8%d7%99%d7%95%d7%aa" class="toggle-content">
+<p style="text-align: justify;">
+		<span style="font-size:16px;">באפשרותך לשלם אך ורק תשלום מאובטח באמצעות PayPal או באמצעות כרטיס אשראי בין-לאומי, בעל 16 ספרות,&nbsp;וקישור מיוחד להורדת חבילת הלימוד שלך יישלח לאימייל שתזין במהלך התשלום.</span>
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;">אין אפשרות לבצע תשלום במזומן, בעת ההספקה או בדרכים אחרות.</span>
+	</p>
+<p>
+		&nbsp;
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;">התשלום&nbsp;מאובטח ומבוצע על ידי חברת Selz/PayPal,&nbsp;ושמם יופיע בשורת הפירוט&nbsp;בחשבונית החודשית שלך. </span><span style="font-size: 16px; line-height: 25.6000003814697px; text-align: justify;">Selz</span><span style="font-size:16px;"> הינה חברה בין לאומית, ואת התשלום הם גובים בדולרים ולא בשקלים, לכן ברוב&nbsp;המקרים אתה תשלם סכום נמוך מהמחיר הנקוב בשקלים לאחר ההמרה.</span>
+	</p>
+</div>
+</div>
+<p><div class="wpcmsdev-toggle">
+<h3 class="toggle-title"><a href="#toggle-%d7%90%d7%a0%d7%99-%d7%9c%d7%95%d7%a7%d7%97%d7%9c%d7%a7%d7%97%d7%aa%d7%99-%d7%a7%d7%95%d7%a8%d7%a1-%d7%90%d7%97%d7%a8-%d7%94%d7%90%d7%9d-%d7%9b%d7%93%d7%90%d7%99-%d7%9c%d7%99-%d7%9c%d7%9c%d7%9e"><i class="fa fa-plus icon-for-inactive"></i><i class="fa fa-minus icon-for-active"></i>אני לוקח/לקחתי קורס אחר. האם כדאי לי ללמוד גם כאן?</a></h3>
+<div id="toggle-%d7%90%d7%a0%d7%99-%d7%9c%d7%95%d7%a7%d7%97%d7%9c%d7%a7%d7%97%d7%aa%d7%99-%d7%a7%d7%95%d7%a8%d7%a1-%d7%90%d7%97%d7%a8-%d7%94%d7%90%d7%9d-%d7%9b%d7%93%d7%90%d7%99-%d7%9c%d7%99-%d7%9c%d7%9c%d7%9e" class="toggle-content">
+<p style="text-align: justify;">
+		<span style="font-size:16px;">יכול להיות שלמדת במקום אחר חלק מהנושאים האלה. השקעת הרבה זמן&nbsp;ומאמץ בשביל ללמוד את החלק הטכני של מגוון רחב של תחומים,&nbsp;וזה מעולה.&nbsp;כאן אני מציע&nbsp;לך לרדת עמוק יותר,&nbsp;ובהרבה פחות השקעה&nbsp;ללמוד בצורה יסודית את אחד מן התחומים החשובים ביותר בעולם התכנות.</span>
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;">מעבר לידע הטכני, כאן נתמקד גם בשימוש נכון בקונספטים שונים ובפעמים&nbsp;שעדיף בהם להימנע משימוש בדברים מסוימים כדי למנוע בעיות בעתיד.</span>
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;">כמובן, אם אתה מרגיש בקיא בנושא, אם&nbsp;אתה יכול לענות בקלות על כל שאלות הדוגמה מתוך פרק ריאיון העבודה שהוצגו למעלה ומסוגל לכתוב כל מערכת מההתחלה באופן נכון ותקין &#8211; ברכותיי. אתה הרבה מעבר לרמה של הקורס הזה.&nbsp;<img src="../wp-includes/images/smilies/simple-smile.png.pagespeed.ce.6Uuyz3vChR.png" alt=":)" class="wp-smiley" style="height: 1em; max-height: 1em;"/></span>
+	</p>
+</div>
+</div>
+<p><div class="wpcmsdev-toggle">
+<h3 class="toggle-title"><a href="#toggle-%d7%9b%d7%9e%d7%94-%d7%96%d7%9e%d7%9f-%d7%99%d7%99%d7%a7%d7%97-%d7%9c%d7%99-%d7%9c%d7%9c%d7%9e%d7%95%d7%93"><i class="fa fa-plus icon-for-inactive"></i><i class="fa fa-minus icon-for-active"></i>כמה זמן ייקח לי ללמוד?</a></h3>
+<div id="toggle-%d7%9b%d7%9e%d7%94-%d7%96%d7%9e%d7%9f-%d7%99%d7%99%d7%a7%d7%97-%d7%9c%d7%99-%d7%9c%d7%9c%d7%9e%d7%95%d7%93" class="toggle-content">
+<p style="text-align: justify;">
+		<span style="font-size:16px;">התשובה היבשה: קריאת הספר תיקח לך בערך&nbsp;ארבע&nbsp;שעות וצפייה במדריכי הווידאו עוד חמש&nbsp;שעות בערך.</span>
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;">אם אתה באמת רוצה להפיק&nbsp;את מירב התועלת מהלימוד&nbsp;אל תעבור על הטקסט עם העיניים, אלא&nbsp;עצור וחשוב על&nbsp;מהות הדברים ולאחר מכן שחק עם&nbsp;דוגמאות הקוד בכל פרק כדי להגיע לתוצאות שונות. כמו כן, רצוי שתנסה לפתור את התרגילים המוצעים במהלך הספר ושמדי פעם תעיין בחומר העזר ובמדריכים הנוספים, המקושרים.</span>
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;">במהלך צפיית הוידאו תוכל לעבוד על אותו הפרויקט בעצמך במקביל. לא רק שתבין טוב יותר למה נעשה מה שנעשה, אלא&nbsp;גם תוכל מיד לעבור לחלון המדריך ולראות איך לפתור את הבעיות שתיתקל בהן.</span>
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;">עד כמה עמוק תרצה להיכנס לתחום ולנסות בעצמך &#8211; תלוי רק בך. ככל שתרבה יותר&nbsp;תרוויח יותר.</span>
+	</p>
+<p>
+		<span style="line-height: 20.7999992370605px;"></p>
+</div>
+</div>
+<p></span>
+	</p>
+<p>
+		<span style="line-height: 20.7999992370605px;">
+<div class="wpcmsdev-toggle">
+<h3 class="toggle-title"><a href="#toggle-%d7%90%d7%a4%d7%a9%d7%a8-%d7%93%d7%95%d7%92%d7%9e%d7%94-%d7%9c%d7%a4%d7%a8%d7%a7-%d7%9e%d7%94%d7%a1%d7%a4%d7%a8"><i class="fa fa-plus icon-for-inactive"></i><i class="fa fa-minus icon-for-active"></i>אפשר דוגמה לפרק מהספר?</a></h3>
+<div id="toggle-%d7%90%d7%a4%d7%a9%d7%a8-%d7%93%d7%95%d7%92%d7%9e%d7%94-%d7%9c%d7%a4%d7%a8%d7%a7-%d7%9e%d7%94%d7%a1%d7%a4%d7%a8" class="toggle-content">
+<p></span>
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;">מובן שאפשר. <a href="https://drive.google.com/file/d/0B15E_pcX9XFJbDZ2SHhDaGpqZU0/view?usp=sharing" onclick="__gaTracker('send', 'event', 'outbound-article', 'https://drive.google.com/file/d/0B15E_pcX9XFJbDZ2SHhDaGpqZU0/view?usp=sharing', 'שמונת העמודים הראשונים של הספר, מתוך הפרק הראשון: מבוא לתכנות מונחה עצמים');" target="_blank">שמונת העמודים הראשונים של הספר, מתוך הפרק הראשון: מבוא לתכנות מונחה עצמים</a></span>
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;">עניינית, אתה יכול לקרוא את כל הספר ולצפות בכל מדריכי הווידאו, ואם תלמד שום דבר חדש או לא תאהב מכל סיבה שהיא &#8211; תוכל לקבל החזר כספי מלא.</span>
+	</p>
+<p>
+		<span style="line-height: 20.7999992370605px;"></p>
+</div>
+</div>
+<p></span>
+	</p>
+<p>
+		<span style="line-height: 20.7999992370605px;">
+<div class="wpcmsdev-toggle">
+<h3 class="toggle-title"><a href="#toggle-%d7%99%d7%a9-%d7%9c%d7%99-%d7%a9%d7%90%d7%9c%d7%94-%d7%90%d7%97%d7%a8%d7%aa"><i class="fa fa-plus icon-for-inactive"></i><i class="fa fa-minus icon-for-active"></i>יש לי שאלה אחרת!</a></h3>
+<div id="toggle-%d7%99%d7%a9-%d7%9c%d7%99-%d7%a9%d7%90%d7%9c%d7%94-%d7%90%d7%97%d7%a8%d7%aa" class="toggle-content">
+<p></span>
+	</p>
+<p style="line-height: 20.7999992370605px; text-align: justify;">
+		<span style="font-size:16px;"><span style="line-height: 20.7999992370605px;">אתה מוזמן לשלוח לי הודעה לאימייל,&nbsp;ואני אשמח לענות על כל שאלה.</span></span>
+	</p>
+<p style="line-height: 20.7999992370605px; text-align: justify;">
+		<span style="font-size:16px;"><span style="line-height: 20.7999992370605px;"><a href="../cdn-cgi/l/email-protection.html#315c50585d1a5e5e41535e5e5a407141594156445855541f525e1f585d0e4244535b5452450c14750614700814750614080114750614087214750614080514030114XD7%9C%D7%92%D7%91%D7%99%20%D7%97%D7%91%D7%99%D7%9C%D7%95%D7%AA%20%D7%94%D7%9C%D7%99%D7%9E%D7%95%D7%93%20%D7%AA%D7%9B%D7%A0%D7%95%D7%AA%20%D7%9E%D7%95%D7%A0%D7%97%D7%94%20%D7%A2%D7%A6%D7%9E%D7%99%D7%9D&amp;body=%D7%94%D7%99%20%D7%90%D7%9C%D7%9B%D7%A1%2C%20%0A%D7%99%D7%A9%20%D7%9C%D7%99%20%D7%A9%D7%90%D7%9C%D7%94%3A%0A%0A" target="_blank"><span class="__cf_email__" data-cfemail="600d01090c4b0f0f10020f0f0b112010081007150904054e030f4e090c">[email&#160;protected]</span><script data-cfhash='f9e31' type="text/javascript">
+/* <![CDATA[ */!function(){try{var t="currentScript"in document?document.currentScript:function(){for(var t=document.getElementsByTagName("script"),e=t.length;e--;)if(t[e].getAttribute("data-cfhash"))return t[e]}();if(t&&t.previousSibling){var e,r,n,i,c=t.previousSibling,a=c.getAttribute("data-cfemail");if(a){for(e="",r=parseInt(a.substr(0,2),16),n=2;a.length-n;n+=2)i=parseInt(a.substr(n,2),16)^r,e+=String.fromCharCode(i);e=document.createTextNode(e),c.parentNode.replaceChild(e,c)}t.parentNode.removeChild(t);}}catch(u){}}()/* ]]> */</script></a> (לחץ על הקישור &#8211; ייפתח חלון חדש לכתיבת הודעה)</span></span>
+	</p>
+<p style="line-height: 20.7999992370605px;">
+		<span style="line-height: 20.7999992370605px;"></p>
+</div>
+</div>
+<p></span>
+	</p>
+<p>
+		&nbsp;
+	</p>
+<div class="plans">
+			<div class="plan">
+				<h2 class="plan-title">
+					הספר
+					<br/><br/>
+					<span dir="ltr" style="color: rgb(168, 153, 162);">97 ₪</span>
+				</h2>
+				<img width="41" height="60" src="../wp-content/uploads/2014/10/41x60xbookonly.png.pagespeed.ic.f5a7UxEET2.jpg" alt="הספר בלבד">
+				<ul class="plan-features">
+					<li><strong>הספר</strong> תכנות מונחה עצמים בגרסת epub PDF ו-mobi<br/><br/></li>
+				</ul>
+				<div dir="ltr">
+					<script data-selz-t="_selz-btn-default" data-selz-a="modal" data-selz-ct="ffffff" data-selz-cb="c4bdd4" data-selz-b="http://selz.co/1tcqTk7"></script>
+				</div>
+			</div>
+			<div class="plan">
+				<h2 class="plan-title">
+					הספר + וידאו
+					<br/><br/>
+					<span dir="ltr" style="color: rgb(168, 153, 162);">497 ₪</span>
+				</h2>
+				<img width="116" height="60" src="../wp-content/uploads/2014/10/116x60xbookplusvid.png.pagespeed.ic.qIUks5oJyH.jpg" alt="הספר ומדריך הוידאו">
+				<ul class="plan-features">
+					<li><strong>הספר</strong> תכנות מונחה עצמים בגרסת epub PDF ו-mobi <br/><br/></li>
+					<li><strong>מדריכי וידאו</strong> צעד אחר צעד ליצירת מערכת רשת חברתית בגישת OOP ו-MVC<br/><br/></li>
+				</ul>
+				<div dir="ltr">
+					<script data-selz-t="_selz-btn-default" data-selz-a="modal" data-selz-ct="ffffff" data-selz-cb="c4bdd4" data-selz-b="http://selz.co/1tcvUZU"></script>
+				</div>
+			</div>
+			<div class="plan plan-tall">
+				<h2 class="plan-title">
+					החבילה המלאה
+					<br/><br/>
+					<s style="font-size:12px">997</s>
+					<span dir="ltr" style="color: rgb(168, 153, 162);">497 ₪</span>
+				</h2>
+				<img width="112" height="60" src="../wp-content/uploads/2014/10/112x60xfullpackage.png.pagespeed.ic.J67F6txDeh.png" alt="החבילה המלאה">
+				<ul class="plan-features">
+					<li><strong>הספר</strong> תכנות מונחה עצמים בגרסת epub PDF ו-mobi <br/><br/></li>
+					<li><strong>מדריכי וידאו</strong> צעד אחר צעד ליצירת מערכת רשת חברתית בגישת OOP ו-MVC<br/><br/></li>
+					<li><strong>ראיון עבדוה</strong> מוקלט OOP<br/><br/></li>
+					<li><strong>מדריך וידאו</strong> ליצירת תוסף WordPress בגישת OOP<br/><br/></li>
+				</ul>
+				<div dir="ltr">
+					<script data-selz-t="_selz-btn-default" data-selz-a="modal" data-selz-ct="ffffff" data-selz-cb="44a66a" data-selz-b="http://selz.co/1xvnADI" data-selz-lg="true"></script>
+				</div>
+			</div>
+		</div>
+<p>
+		&nbsp;
+	</p>
+<h1 style="text-align: center;">
+		הגיע הזמן לעבור מ-PHP 4&nbsp;ל-PHP 7<br/>
+	</h1>
+<p style="text-align: justify;">
+		<span style="font-size:16px;">דבר אחד עיקרי מבדיל בין גרסת&nbsp;</span>PHP 4<span style="font-size:16px;">&nbsp;לבין גרסת&nbsp;</span>PHP 7<span style="font-size:16px;">&nbsp;והוא תמיכה בתכנות מונחה עצמים. עד </span>PHP 5<span style="font-size:16px;">&nbsp;השפה כמעט ולא תמכה בתכנות מונחה עצמים, וסיפקה אוסף קטן מאוד של אפשרויות שכל שפת תכנות מודרנית אחרת סיפקה כבר מזמן.</span>
+	</p>
+<p style="text-align: justify;">
+		<span style="font-size:16px;">עם יציאתה של של&nbsp;PHP 5 ולאחר מכן עם הגעת PHP7 נוספו לשפה מאות אפשרויות חדשות לתכנות מונחה עצמים, שעליהם אתה הולך ללמוד, ואם אתה עדיין לא מנצל את היכולות של השפה באופן מלא, יכול להיות שהגיע הזמן, סוף סוף, להתקדם מ-PHP 4&nbsp;</span><span style="font-size:16px;">ל-PHP 7!</span>
+	</p>
+<p>
+		&nbsp;
+	</p>
+<p>
+		&nbsp;
+	</p>
+<p>
+		&nbsp;
+	</p>
+<p>
+		&nbsp;
+	</p>
+<p>
+		&nbsp;
+	</p>
+</div>
+	
+
+
+<link rel='stylesheet' id='mediaelement-css' href='../wp-includes/js/mediaelement/A.mediaelementplayer.min.css%2cqver%3d2.18.1.pagespeed.cf.N8Jsg7dvmk.css' type='text/css' media='all'/>
+<link rel='stylesheet' id='wp-mediaelement-css' href='../wp-includes/js/mediaelement/A.wp-mediaelement.css%2cqver%3d4.4.1.pagespeed.cf.fLm53XUVQU.css' type='text/css' media='all'/>
+<script type='text/javascript'>!function(a,b){"use strict";function c(){if(!e){e=!0;var a,c,d,f,g=-1!==navigator.appVersion.indexOf("MSIE 10"),h=!!navigator.userAgent.match(/Trident.*rv:11\./),i=b.querySelectorAll("iframe.wp-embedded-content"),j=b.querySelectorAll("blockquote.wp-embedded-content");for(c=0;c<j.length;c++)j[c].style.display="none";for(c=0;c<i.length;c++)if(d=i[c],d.style.display="",!d.getAttribute("data-secret")){if(f=Math.random().toString(36).substr(2,10),d.src+="#?secret="+f,d.setAttribute("data-secret",f),g||h)a=d.cloneNode(!0),a.removeAttribute("security"),d.parentNode.replaceChild(a,d)}else;}}var d=!1,e=!1;if(b.querySelector)if(a.addEventListener)d=!0;if(a.wp=a.wp||{},!a.wp.receiveEmbedMessage)if(a.wp.receiveEmbedMessage=function(c){var d=c.data;if(d.secret||d.message||d.value)if(!/[^a-zA-Z0-9]/.test(d.secret)){var e,f,g,h,i,j=b.querySelectorAll('iframe[data-secret="'+d.secret+'"]'),k=b.querySelectorAll('blockquote[data-secret="'+d.secret+'"]');for(e=0;e<k.length;e++)k[e].style.display="none";for(e=0;e<j.length;e++)if(f=j[e],c.source===f.contentWindow){if(f.style.display="","height"===d.message){if(g=parseInt(d.value,10),g>1e3)g=1e3;else if(200>~~g)g=200;f.height=g}if("link"===d.message)if(h=b.createElement("a"),i=b.createElement("a"),h.href=f.getAttribute("src"),i.href=d.value,i.host===h.host)if(b.activeElement===f)a.top.location.href=d.value}else;}},d)a.addEventListener("message",a.wp.receiveEmbedMessage,!1),b.addEventListener("DOMContentLoaded",c,!1),a.addEventListener("load",c,!1)}(window,document);</script>
+<script type='text/javascript' src='../wp-includes/js/jquery/jquery.js%2cqver%3d1.11.3.pagespeed.jm.zixJPNMRNN.js'></script>
+<script src="../wp-includes%2c_js%2c_jquery%2c_jquery-migrate.min.js%2cqver%3d%3d1.2.1%2bwp-content%2c_plugins%2c_easy-responsive-shortcodes%2c_js%2c_toggle.js%2cqver%3d%3d1.pagespeed.jc.9r_-_ad01P.js"></script><script>eval(mod_pagespeed_Hf0$z$LmEX);</script>
+<script>eval(mod_pagespeed_DY5bgSAeCu);</script>
+<script type='text/javascript'>var mejsL10n={"language":"he-IL","strings":{"Close":"\u05e1\u05d2\u05d5\u05e8","Fullscreen":"\u05de\u05e1\u05da \u05de\u05dc\u05d0","Download File":"\u05d4\u05d5\u05e8\u05d3 \u05e7\u05d5\u05d1\u05e5","Download Video":"\u05d4\u05d5\u05e8\u05d3 \u05d5\u05d9\u05d3\u05d0\u05d5","Play\/Pause":"\u05e0\u05d2\u05df\/\u05d4\u05e9\u05d4\u05d4","Mute Toggle":"\u05d4\u05e9\u05ea\u05e7","None":"\u05dc\u05dc\u05d0","Turn off Fullscreen":"\u05ea\u05e6\u05d5\u05d2\u05d4 \u05e8\u05d2\u05d9\u05dc\u05d4","Go Fullscreen":"\u05de\u05e1\u05da \u05de\u05dc\u05d0","Unmute":"\u05d1\u05d8\u05dc \u05d4\u05e9\u05ea\u05e7\u05d4","Mute":"\u05dc\u05d4\u05e9\u05ea\u05d9\u05e7","Captions\/Subtitles":"\u05db\u05ea\u05d5\u05d1\u05d9\u05d5\u05ea"}};var _wpmejsSettings={"pluginPath":"\/wp-includes\/js\/mediaelement\/"};</script>
+<script src="../wp-includes/js/mediaelement/mediaelement-and-player.min.js%2cqver%3d%3d2.18.1%2bwp-mediaelement.js%2cqver%3d%3d4.4.1.pagespeed.jc.uQG2iFmF43.js"></script><script>eval(mod_pagespeed_tE2WnJGBL4);</script>
+<script>eval(mod_pagespeed_8G$hggFP73);</script>
+
+	<script type="text/javascript" src="../../d2tgfbvjf3q6hn.cloudfront.net/js/ea9ac1.js"></script>
+    <script type="text/javascript">
+/* <![CDATA[ */
+(function(){try{var s,a,i,j,r,c,l=document.getElementsByTagName("a"),t=document.createElement("textarea");for(i=0;l.length-i;i++){try{a=l[i].getAttribute("href");if(a&&a.indexOf("/cdn-cgi/l/email-protection") > -1  && (a.length > 28)){s='';j=27+ 1 + a.indexOf("/cdn-cgi/l/email-protection");if (a.length > j) {r=parseInt(a.substr(j,2),16);for(j+=2;a.length>j&&a.substr(j,1)!='X';j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}j+=1;s+=a.substr(j,a.length-j);}t.innerHTML=s.replace(/</g,"&lt;").replace(/>/g,"&gt;");l[i].setAttribute("href","mailto:"+t.value);}}catch(e){}}}catch(e){}})();
+/* ]]> */
+</script>
+</body>
+
+<!-- Mirrored from s.phpguide.co.il/oopbook/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 13 Jan 2016 17:37:19 GMT -->
+</html>
+<script type="text/javascript" src="../../cdnjs.cloudflare.com/ajax/libs/jquery-scrolldepth/0.6/jquery.scrolldepth.min.js"></script>
+<script type="text/javascript">if(typeof _$elz==="undefined"){var _$elz={};}
+if(typeof _$elz.b==="undefined"){_$elz.b={e:document.createElement("script")};_$elz.b.e.src="https://selz.com/embed/button";document.body.appendChild(_$elz.b.e);}
+jQuery(function(){jQuery.scrollDepth();var interval;function resetText(){var btn=jQuery('._selz-btn-label');if(btn.length==6)
+{btn.html('קנה עכשיו');window.clearInterval(interval);}};interval=window.setInterval(resetText,500);jQuery('a[href="//selz.co/1xvnADI"]').click(function(){_mktz.push(['_Goal','clickedbynowoopbook-fullpack',297]);});jQuery('a[href="//selz.co/1tcvUZU"]').click(function(){_mktz.push(['_Goal','clickedbynowoopbook-partialpack',297]);});jQuery('a[href="//selz.co/1tcqTk7"]').click(function(){_mktz.push(['_Goal','clickedbynowoopbook-bookonly',57]);});});</script>
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+Page Caching using disk: enhanced
+Database Caching 2/10 queries in 0.005 seconds using apc
+Object Caching 417/430 objects using apc
+
+ Served from: s.phpguide.co.il @ 2016-01-13 19:20:58 by W3 Total Cache -->
